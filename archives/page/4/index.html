@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>NodeJS: HTTP Module - Dogukan Sahin</title>
+<title>Archives - Dogukan Sahin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,15 +16,11 @@
 
 
 
-    <meta name="description" content="Uygulamalarımızda  web sitesi veya bir servis aracılığı ile gelen istekleri karşılamak veya yanıtlamak isteyeceğimiz zaman bir web sunucuna ihtiyaç duyarız. NodeJS ile içerisinde çekirdek modül olarak">
-<meta property="og:type" content="article">
-<meta property="og:title" content="NodeJS: HTTP Module">
-<meta property="og:url" content="http://sahindogukan.github.io/2020/03/05/NodeJS-HTTP-Module/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Dogukan Sahin">
+<meta property="og:url" content="http://sahindogukan.github.io/archives/page/4/index.html">
 <meta property="og:site_name" content="Dogukan Sahin">
-<meta property="og:description" content="Uygulamalarımızda  web sitesi veya bir servis aracılığı ile gelen istekleri karşılamak veya yanıtlamak isteyeceğimiz zaman bir web sunucuna ihtiyaç duyarız. NodeJS ile içerisinde çekirdek modül olarak">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-05T09:35:29.000Z">
-<meta property="article:modified_time" content="2020-03-08T03:37:32.120Z">
 <meta property="article:author" content="Dogukan Sahin">
 <meta name="twitter:card" content="summary">
 
@@ -123,112 +119,43 @@
 
     <section class="section">
     <div class="container">
-    <article class="article content gallery" itemscope itemprop="blogPost">
-    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
-        
-            NodeJS: HTTP Module
-        
-    </h1>
-    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
-        <span class="column is-narrow">
-            <time datetime="2020-03-05T09:35:29.000Z" itemprop="datePublished">Mar 5 2020</time>
-        </span>
-        
-        <span class="column is-narrow article-category">
-            <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
-        </span>
-        
-        
+    
+    
+        <div class="archive content">
+            <h4 class="title is-4" id="2019">2019</h4>
+            <div class="articles">
+            
+                <div class="article content>">
+                    <time class="is-text-small" datetime="2019-11-17T20:08:36.000Z" itemprop="datePublished">
+                        Nov 17</time>
+                    <h6 class="title is-6"><a href="/2019/11/17/C-Stili-Dizilerden-std-array-e/">C Stili Dizilerden std::array&#39;e...</a></h6>
+                </div>
+            
+            </div>
+        </div>
+    
+    
+    
+<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
+    <div class="pagination-previous">
+        <a href="/archives/page/3/">Prev</a>
     </div>
-    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-    
-        <html><head></head><body><p>Uygulamalarımızda  web sitesi veya bir servis aracılığı ile gelen istekleri karşılamak veya yanıtlamak isteyeceğimiz zaman bir web sunucuna ihtiyaç duyarız. NodeJS ile içerisinde çekirdek modül olarak gelen <strong>http</strong> modulü sayesinde bir istemci ile sunucu arasındaki bağlantı alışverişi sağlanır.</p>
-<a id="more"></a>
-
-<ul>
-<li><p>İlk olarak <strong>http</strong> modülünü projeye dahil edelim.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">"http"</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
-</li>
-<li><p><strong>http</strong> üzerinden createServer() metodu bir server nesnesi üretmemizi sağlar. Biz de burada “server” adını verdiğimiz bir nesne oluşturalım.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> server = http.createServer()</span><br></pre></td></tr></tbody></table></figure><p></p>
-</li>
-<li><p>Oluşturduğumuz server’ın hangi port üzerinde dinleneceğini <strong>listen()</strong> methodu ile tanımlıyoruz.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.listen(<span class="hljs-number">3000</span>);</span><br></pre></td></tr></tbody></table></figure><p></p>
-</li>
-<li><p>createServer() metodu içerisine gelen isteklerimi ve yanıtlarımızı yönetmek için request ve response objelerini içeren bir callback tanımlanır. Örnek olarak biz burda gelen isteğin method tipini öğrenmeye çalışalım.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">"http"</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> server = http.createServer(<span class="hljs-function">(<span class="hljs-params">req,res</span>)=></span>{</span><br><span class="line"><span class="hljs-built_in">console</span>.log(req.method);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">server.listen(<span class="hljs-number">3000</span>);</span><br></pre></td></tr></tbody></table></figure><p></p>
-</li>
-<li><p>Şimdi ise gelen bir isteğe URL kontrolü yaparak bir response döndürelim. Örneğimizde eğer gelen isteğin URL’si <strong>“/home”</strong> ise “Anasayfa”, <strong>“/about”</strong> ise “Hakkımda” yazan bir mesaj değeri gönderelim ve yazdıralım.</p>
-<pre><code class="Javascript"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);
-
-<span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req,res</span>)=></span>{
-<span class="keyword">if</span> (req.url === <span class="string">"/home"</span>) {
-    res.write(<span class="string">"Anasayfa"</span>);
-    res.end()
-}
-<span class="keyword">if</span> (req.url === <span class="string">"/About"</span>) {
-    res.write(<span class="string">"Hakkımda"</span>);
-    res.end()
-}
-});
-
-server.listen(<span class="number">3000</span>);</code></pre>
-</li>
-<li><p><strong>Not</strong>: Bir response değeri gönderiyorsak eğer sonunda <strong>end()</strong> ile sonladırmamız gerekiyor.</p>
-</li>
-</ul>
-</body></html>
-    
+    <div class="pagination-next is-invisible is-hidden-mobile">
+        <a href="/archives/page/5/">Next</a>
     </div>
-    
-    
-    <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
-            
-            <a href="/2020/03/09/Java-EE-Servlet-Kavrami/">Java EE: Servlet Kavramı</a>
-            
-        </span>
-        <span class="column is-12-mobile is-half-desktop  article-nav-next">
-            
-            <a href="/2020/03/04/NodeJS-File-System-Module/">NodeJS: File System Module</a>
-            
-        </span>
-    </div>
-    
-</article>
-
-
-<div class="sharebox">
-    
-<div class="sharethis-inline-share-buttons"></div>
-<script type='text/javascript' src='true' async='async'></script>
-
-</div>
-
-
-
-<div class="comments">
-    <h3 class="title is-4">Comments</h3>
-    
-<script>
-    var disqus_config = function () {
-        this.page.url = 'http://sahindogukan.github.io/2020/03/05/NodeJS-HTTP-Module/';
-        this.page.identifier = '2020/03/05/NodeJS-HTTP-Module/';
+    <ul class="pagination-list is-hidden-mobile">
         
-        this.language = 'en';
+        <li><a class="pagination-link" href="/archives/">1</a></li>
         
-    };
-    (function() {
-        var d = document, s = d.createElement('script');  
-        s.src = '//' + 'true' + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-
-<div id="disqus_thread">
+        <li><a class="pagination-link" href="/archives/page/2/">2</a></li>
+        
+        <li><a class="pagination-link" href="/archives/page/3/">3</a></li>
+        
+        <li><a class="pagination-link is-current" href="/archives/page/4/">4</a></li>
+        
+    </ul>
+</nav>
     
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
-</div>
-</div>
-
     </div>
 </section>
     <footer class="footer">
