@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>Android Programlama: Event Kavramı - Dogukan Sahin</title>
+<title>NodeJS: HTTP Module - Dogukan Sahin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,15 +16,15 @@
 
 
 
-    <meta name="description" content="Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak ve">
+    <meta name="description" content="Uygulamalarımızda  web sitesi veya bir servis aracılığı ile gelen istekleri karşılamak veya yanıtlamak isteyeceğimiz zaman bir web sunucuna ihtiyaç duyarız. NodeJS ile içerisinde çekirdek modül olarak">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Programlama: Event Kavramı">
-<meta property="og:url" content="http://sahindogukan.github.io/2020/03/10/Android-Programlama-Event-Kavrami/index.html">
+<meta property="og:title" content="NodeJS: HTTP Module">
+<meta property="og:url" content="http://sahindogukan.github.io/2020/01/05/NodeJS-HTTP-Module/index.html">
 <meta property="og:site_name" content="Dogukan Sahin">
-<meta property="og:description" content="Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak ve">
+<meta property="og:description" content="Uygulamalarımızda  web sitesi veya bir servis aracılığı ile gelen istekleri karşılamak veya yanıtlamak isteyeceğimiz zaman bir web sunucuna ihtiyaç duyarız. NodeJS ile içerisinde çekirdek modül olarak">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-09T23:43:50.000Z">
-<meta property="article:modified_time" content="2020-03-10T02:35:34.532Z">
+<meta property="article:published_time" content="2020-01-05T09:35:29.000Z">
+<meta property="article:modified_time" content="2020-03-11T22:32:36.930Z">
 <meta property="article:author" content="Dogukan Sahin">
 <meta name="twitter:card" content="summary">
 
@@ -126,30 +126,53 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            Android Programlama: Event Kavramı
+            NodeJS: HTTP Module
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-03-09T23:43:50.000Z" itemprop="datePublished">Mar 10 2020</time>
+            <time datetime="2020-01-05T09:35:29.000Z" itemprop="datePublished">Jan 5 2020</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/android/">android</a>
+            <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
         </span>
         
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak verilebilir. Bu tür olayların fırlatıldığı anda programlarımızda dinleyici nesneler yardımıyla yakalayarak isteklerimize uygun işlemleri gerçekleştirebiliriz.</p>
+        <html><head></head><body><p>Uygulamalarımızda  web sitesi veya bir servis aracılığı ile gelen istekleri karşılamak veya yanıtlamak isteyeceğimiz zaman bir web sunucuna ihtiyaç duyarız. NodeJS ile içerisinde çekirdek modül olarak gelen <strong>http</strong> modulü sayesinde bir istemci ile sunucu arasındaki bağlantı alışverişi sağlanır.</p>
 <a id="more"></a>
 
-<p>Olayı daha iyi anlamak adına bir örnek yapalım. Bir adet <strong>Button</strong>  ve <strong>TextView</strong> bileşenimiz olsun ve butona tıkladığımız an <strong>onClick()</strong> metodunu tetikleyerek bir olay fırlatalım. Ardından listener ile fırlattığımız olayı yakalayarak TextView’ın içerisindeki değeri her butona tıklanıldığı an 1 arttıralım.<br>Gerekli arayüz seçimi ve XML stil tanımlamaları istenildiği gibi kurgulanabilir. Biz burada bir event üretip daha sonra onu yakalayarak gerekli işlemleri yapacağız.</p>
-<p></p><figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>{</span><br><span class="line">    <span class="hljs-keyword">private</span> Button btnArttir;</span><br><span class="line">    <span class="hljs-keyword">private</span> TextView sayi;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> sayac = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        btnArttir = findViewById(R.id.button);</span><br><span class="line">        sayi = findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        btnArttir.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {</span><br><span class="line">            <span class="hljs-meta">@Override</span></span><br><span class="line">            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View view)</span> </span>{</span><br><span class="line">                sayac++;</span><br><span class="line">                sayi.setText(<span class="hljs-string">"Tıklanma Sayısı: "</span> + sayac);</span><br><span class="line">            }</span><br><span class="line">        });</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
 <ul>
-<li>Fırlattığımız tıklanma olayını <strong>OnClickListener</strong> interface’inin <strong>onClick()</strong> metodunu override ederek yakalamış olduk.  </li>
+<li><p>İlk olarak <strong>http</strong> modülünü projeye dahil edelim.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">"http"</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+<li><p><strong>http</strong> üzerinden createServer() metodu bir server nesnesi üretmemizi sağlar. Biz de burada “server” adını verdiğimiz bir nesne oluşturalım.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> server = http.createServer()</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+<li><p>Oluşturduğumuz server’ın hangi port üzerinde dinleneceğini <strong>listen()</strong> methodu ile tanımlıyoruz.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.listen(<span class="hljs-number">3000</span>);</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+<li><p>createServer() metodu içerisine gelen isteklerimi ve yanıtlarımızı yönetmek için request ve response objelerini içeren bir callback tanımlanır. Örnek olarak biz burda gelen isteğin method tipini öğrenmeye çalışalım.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">"http"</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">const</span> server = http.createServer(<span class="hljs-function">(<span class="hljs-params">req,res</span>)=></span>{</span><br><span class="line"><span class="hljs-built_in">console</span>.log(req.method);</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line">server.listen(<span class="hljs-number">3000</span>);</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+<li><p>Şimdi ise gelen bir isteğe URL kontrolü yaparak bir response döndürelim. Örneğimizde eğer gelen isteğin URL’si <strong>“/home”</strong> ise “Anasayfa”, <strong>“/about”</strong> ise “Hakkımda” yazan bir mesaj değeri gönderelim ve yazdıralım.</p>
+<pre><code class="Javascript"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);
+
+<span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req,res</span>)=></span>{
+<span class="keyword">if</span> (req.url === <span class="string">"/home"</span>) {
+    res.write(<span class="string">"Anasayfa"</span>);
+    res.end()
+}
+<span class="keyword">if</span> (req.url === <span class="string">"/About"</span>) {
+    res.write(<span class="string">"Hakkımda"</span>);
+    res.end()
+}
+});
+
+server.listen(<span class="number">3000</span>);</code></pre>
+</li>
+<li><p><strong>Not</strong>: Bir response değeri gönderiyorsak eğer sonunda <strong>end()</strong> ile sonladırmamız gerekiyor.</p>
+</li>
 </ul>
 </body></html>
     
@@ -157,12 +180,14 @@
     
     
     <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/01/06/NodeJS-File-System-Module/">NodeJS: File System Module</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2020/03/10/Android-Programlama-Resource-Kullanimi/">Android Programlama: Resource Kullanımı</a>
+            <a href="/2020/01/04/NodeJS-Module-Kavrami/">NodeJS: Module Kavramı</a>
             
         </span>
     </div>
@@ -184,8 +209,8 @@
     
 <script>
     var disqus_config = function () {
-        this.page.url = 'http://sahindogukan.github.io/2020/03/10/Android-Programlama-Event-Kavrami/';
-        this.page.identifier = '2020/03/10/Android-Programlama-Event-Kavrami/';
+        this.page.url = 'http://sahindogukan.github.io/2020/01/05/NodeJS-HTTP-Module/';
+        this.page.identifier = '2020/01/05/NodeJS-HTTP-Module/';
         
         this.language = 'en';
         

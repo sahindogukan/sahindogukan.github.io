@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>NodeJS - NodeJS&#39;e Giriş/Kurulum - Dogukan Sahin</title>
+<title>Android Programlama: Event Kavramı - Dogukan Sahin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,26 +16,17 @@
 
 
 
-    <meta name="description" content="NodeJS nedir?NodeJS Javascript kodlarımızı sunucu tarafında çalıştırabildiğimiz işlem bazlı (event-based), ölçeklendirilebilir (non-blocking) bir açık kaynak kodlu uygulama geliştirme çatısıdır. Peki">
+    <meta name="description" content="Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak ve">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NodeJS - NodeJS&#39;e Giriş&#x2F;Kurulum">
-<meta property="og:url" content="http://sahindogukan.github.io/2020/03/03/NodeJS-NodeJS-e-Giris-Kurulum/index.html">
+<meta property="og:title" content="Android Programlama: Event Kavramı">
+<meta property="og:url" content="http://sahindogukan.github.io/2020/02/10/Android-Programlama-Event-Kavrami/index.html">
 <meta property="og:site_name" content="Dogukan Sahin">
-<meta property="og:description" content="NodeJS nedir?NodeJS Javascript kodlarımızı sunucu tarafında çalıştırabildiğimiz işlem bazlı (event-based), ölçeklendirilebilir (non-blocking) bir açık kaynak kodlu uygulama geliştirme çatısıdır. Peki">
+<meta property="og:description" content="Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak ve">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum1.png">
-<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum2.png">
-<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum3.png">
-<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum4.png">
-<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum5.png">
-<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum6.png">
-<meta property="og:image" content="http://sahindogukan.github.io/images/node.png">
-<meta property="og:image" content="http://sahindogukan.github.io/images/node2.png">
-<meta property="article:published_time" content="2020-03-03T00:20:50.000Z">
-<meta property="article:modified_time" content="2020-03-03T02:12:37.838Z">
+<meta property="article:published_time" content="2020-02-09T23:43:50.000Z">
+<meta property="article:modified_time" content="2020-03-11T22:32:04.724Z">
 <meta property="article:author" content="Dogukan Sahin">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://sahindogukan.github.io/images/kurulum1.png">
 
 
 
@@ -135,37 +126,31 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            NodeJS - NodeJS&#39;e Giriş/Kurulum
+            Android Programlama: Event Kavramı
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-03-03T00:20:50.000Z" itemprop="datePublished">Mar 3 2020</time>
+            <time datetime="2020-02-09T23:43:50.000Z" itemprop="datePublished">Feb 10 2020</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+            <a class="article-category-link" href="/categories/android/">android</a>
         </span>
         
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><h3 id="NodeJS-nedir"><a href="#NodeJS-nedir" class="headerlink" title="NodeJS nedir?"></a>NodeJS nedir?</h3><p><strong>NodeJS</strong> Javascript kodlarımızı sunucu tarafında çalıştırabildiğimiz <strong>işlem bazlı</strong> (event-based), <strong>ölçeklendirilebilir</strong> (non-blocking) bir açık kaynak kodlu uygulama geliştirme çatısıdır. Peki nedir bu işlem bazlı veya ölçeklendirilebilirlik?<br>Örnek senaryo üzerinden anlatacak olursak; bir işlem yapmak için herhangi kurum/işletmeye gittiğimi düşünelim ve kuyrukta beklediğimizi varsayalım. <a id="more"></a> Kurum/işletme işlemleri yapmak için sizlere bir form veriyor ve önce bu formu doldurmanızı istiyor. Sırası gelen kişinin formu doldururken arkada bekleyen kişileri bekletmesi çok mantıklı değildir. İşlem bazlı çalışan sistemlerde her bir olay kendi işlevini görür ve diğer olayları ilgilendirmez. Bu durumda verdiğimiz örnekte sırası gelen her bir kişi formunu aldıktan sonra kuyruktan ayrılıp başka bir yerde doldurmaya başlarsa ve olay bu şekilde işlerse hiç kimse arkasındaki diğer kişileri bekletmiş olmayacak, formu dolduran kişi geri görevli kişiye formunu teslim ederek işlemini tamamlamış olacaktır. Diğer türlü yani <strong>Thread Based</strong> yapıda olmuş olsaydı sistem, kuyruktaki her bir kişi önündeki insanların sırasıyla formu doldurup teslim etmesini bekleyecekti ve sistemi blokladığı gibi arkasında bekleyen bir işi de bloklamış olacaktı. İşte <strong>ölçeklendirilebilir</strong> yani <strong>non-blocking</strong> dediğimiz kavram ise NodeJS’in event-based kavramı ile hareket ederek bloklama işlemlerini ortadan kaldırması olayıdır.</p>
-<h3 id="Kurulum-ve-Ilk-Komut"><a href="#Kurulum-ve-Ilk-Komut" class="headerlink" title="Kurulum ve İlk Komut"></a>Kurulum ve İlk Komut</h3><p>Aşağıdaki linkten ilgili işletim sistemi ve sistem gereksinimlerine özel indirme dosyasını indiriniz.<br><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a></p>
-<img src="/images/kurulum1.png"> 
-<img src="/images/kurulum2.png"> 
-<img src="/images/kurulum3.png"> 
-<img src="/images/kurulum4.png"> 
-<img src="/images/kurulum5.png"> 
-<img src="/images/kurulum6.png"> 
-<hr>
+        <html><head></head><body><p>Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak verilebilir. Bu tür olayların fırlatıldığı anda programlarımızda dinleyici nesneler yardımıyla yakalayarak isteklerimize uygun işlemleri gerçekleştirebiliriz.</p>
+<a id="more"></a>
 
-<p><strong>Şimdi komut satırı aracılığı ile NodeJS’in kurulu olduğu dizine gidelim ve “node” komutu ile ilk programımızı çalıştıralım.</strong></p>
-<img width="450px" src="/images/node.png"> 
-<img width="450px" src="/images/node2.png">
-
+<p>Olayı daha iyi anlamak adına bir örnek yapalım. Bir adet <strong>Button</strong>  ve <strong>TextView</strong> bileşenimiz olsun ve butona tıkladığımız an <strong>onClick()</strong> metodunu tetikleyerek bir olay fırlatalım. Ardından listener ile fırlattığımız olayı yakalayarak TextView’ın içerisindeki değeri her butona tıklanıldığı an 1 arttıralım.<br>Gerekli arayüz seçimi ve XML stil tanımlamaları istenildiği gibi kurgulanabilir. Biz burada bir event üretip daha sonra onu yakalayarak gerekli işlemleri yapacağız.</p>
+<p></p><figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>{</span><br><span class="line">    <span class="hljs-keyword">private</span> Button btnArttir;</span><br><span class="line">    <span class="hljs-keyword">private</span> TextView sayi;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> sayac = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        btnArttir = findViewById(R.id.button);</span><br><span class="line">        sayi = findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        btnArttir.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {</span><br><span class="line">            <span class="hljs-meta">@Override</span></span><br><span class="line">            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View view)</span> </span>{</span><br><span class="line">                sayac++;</span><br><span class="line">                sayi.setText(<span class="hljs-string">"Tıklanma Sayısı: "</span> + sayac);</span><br><span class="line">            }</span><br><span class="line">        });</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<ul>
+<li>Fırlattığımız tıklanma olayını <strong>OnClickListener</strong> interface’inin <strong>onClick()</strong> metodunu override ederek yakalamış olduk.  </li>
+</ul>
 </body></html>
     
     </div>
@@ -174,12 +159,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2020/03/04/NodeJS-Global-Nesneler/">NodeJS: Global Nesneler</a>
+            <a href="/2020/02/15/Android-Programlama-Layout-Siniflari/">Android Programlama: Layout Sınıfları</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2020/02/29/Android-Programlama-Activity-ve-Layout/">Android Programlama: Activity Sınıfı</a>
+            <a href="/2020/02/05/React-Native-FlatList-Kullanimi/">React Native: FlatList Kullanımı</a>
             
         </span>
     </div>
@@ -201,8 +186,8 @@
     
 <script>
     var disqus_config = function () {
-        this.page.url = 'http://sahindogukan.github.io/2020/03/03/NodeJS-NodeJS-e-Giris-Kurulum/';
-        this.page.identifier = '2020/03/03/NodeJS-NodeJS-e-Giris-Kurulum/';
+        this.page.url = 'http://sahindogukan.github.io/2020/02/10/Android-Programlama-Event-Kavrami/';
+        this.page.identifier = '2020/02/10/Android-Programlama-Event-Kavrami/';
         
         this.language = 'en';
         

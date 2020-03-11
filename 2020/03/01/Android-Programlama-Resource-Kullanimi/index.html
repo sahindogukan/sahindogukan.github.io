@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>NodeJS: URL Module - Dogukan Sahin</title>
+<title>Android Programlama: Resource Kullanımı - Dogukan Sahin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,15 +16,15 @@
 
 
 
-    <meta name="description" content="NodeJS ile gelen URL Module bizlere uygulamamıza gelen web adreslerinin içeriklerine ulaşarak bu bilgileri daha anlamlı bir şekilde kullanmamıza olanak sağlar.">
+    <meta name="description" content="Uygulamalarımızı geliştirirken projemiz içerisinde res klasörü altında kaynak koddan bağımsız bazı veriler tutarız. Bu veriler bir arayüz dosyası olabileceği gibi; resim,video,metin diziler ya da bir">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NodeJS: URL Module">
-<meta property="og:url" content="http://sahindogukan.github.io/2020/03/04/NodeJS-URL-Module/index.html">
+<meta property="og:title" content="Android Programlama: Resource Kullanımı">
+<meta property="og:url" content="http://sahindogukan.github.io/2020/03/01/Android-Programlama-Resource-Kullanimi/index.html">
 <meta property="og:site_name" content="Dogukan Sahin">
-<meta property="og:description" content="NodeJS ile gelen URL Module bizlere uygulamamıza gelen web adreslerinin içeriklerine ulaşarak bu bilgileri daha anlamlı bir şekilde kullanmamıza olanak sağlar.">
+<meta property="og:description" content="Uygulamalarımızı geliştirirken projemiz içerisinde res klasörü altında kaynak koddan bağımsız bazı veriler tutarız. Bu veriler bir arayüz dosyası olabileceği gibi; resim,video,metin diziler ya da bir">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-04T02:25:39.000Z">
-<meta property="article:modified_time" content="2020-03-04T02:49:10.355Z">
+<meta property="article:published_time" content="2020-02-29T22:30:45.000Z">
+<meta property="article:modified_time" content="2020-03-11T22:32:18.859Z">
 <meta property="article:author" content="Dogukan Sahin">
 <meta name="twitter:card" content="summary">
 
@@ -126,50 +126,55 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            NodeJS: URL Module
+            Android Programlama: Resource Kullanımı
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-03-04T02:25:39.000Z" itemprop="datePublished">Mar 4 2020</time>
+            <time datetime="2020-02-29T22:30:45.000Z" itemprop="datePublished">Mar 1 2020</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+            <a class="article-category-link" href="/categories/android/">android</a>
         </span>
         
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>NodeJS ile gelen <strong>URL Module</strong> bizlere uygulamamıza gelen web adreslerinin içeriklerine ulaşarak bu bilgileri daha anlamlı bir şekilde kullanmamıza olanak sağlar. </p>
+        <html><head></head><body><p>Uygulamalarımızı geliştirirken projemiz içerisinde <strong>res</strong> klasörü altında kaynak koddan bağımsız bazı veriler tutarız. Bu veriler bir arayüz dosyası olabileceği gibi; resim,video,metin diziler ya da bir style dosyası da olabilir.</p>
 <a id="more"></a>
+
+<h2 id="Kaynaklara-Erisim"><a href="#Kaynaklara-Erisim" class="headerlink" title="Kaynaklara Erişim"></a>Kaynaklara Erişim</h2><h3 id="XML-Dosyalarinda-Kaynak-Kullanimi"><a href="#XML-Dosyalarinda-Kaynak-Kullanimi" class="headerlink" title="XML Dosyalarında Kaynak Kullanımı"></a>XML Dosyalarında Kaynak Kullanımı</h3><p>Aşağıda tanımlandığı dosya ya da klasörlere göre kaynak id önekleri listelenmiştir.</p>
 <ul>
-<li>İlk olarak  <strong>url modulünü</strong> projemize dahil edelim.<br><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">"url"</span>);</span><br></pre></td></tr></tbody></table></figure></li>
-<li>Uygulamıza bir adres geldiğini düşünelim ve işlem yapacağımız bu adresi bir şimdilik bir değişkene atayalım.<br><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> adres = <span class="hljs-string">"https://dogukansahin.net/a/b/c/d?value=1245&value2=abcd"</span>;</span><br></pre></td></tr></tbody></table></figure></li>
-<li>url modülü üzerinden ulaşabildiğimiz <strong>parse()</strong> metodu bizlere adresimiz hakkında birçok bilgi içeren bir obje döndürür.<br><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-keyword">const</span> adresBilgileri = url.parse(adres);</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(adresBilgileri);</span><br><span class="line">  <span class="hljs-comment">/* Console:</span></span><br><span class="line"><span class="hljs-comment">      Url {</span></span><br><span class="line"><span class="hljs-comment">  protocol: 'https:',</span></span><br><span class="line"><span class="hljs-comment">  slashes: true,</span></span><br><span class="line"><span class="hljs-comment">  auth: null,</span></span><br><span class="line"><span class="hljs-comment">  host: 'dogukansahin.net',</span></span><br><span class="line"><span class="hljs-comment">  port: null,</span></span><br><span class="line"><span class="hljs-comment">  hostname: 'dogukansahin.net',</span></span><br><span class="line"><span class="hljs-comment">  hash: null,</span></span><br><span class="line"><span class="hljs-comment">  search: '?value=1245&value2=abcd',</span></span><br><span class="line"><span class="hljs-comment">  query: 'value=1245&value2=abcd',</span></span><br><span class="line"><span class="hljs-comment">  pathname: '/a/b/c/d',</span></span><br><span class="line"><span class="hljs-comment">  path: '/a/b/c/d?value=1245&value2=abcd',</span></span><br><span class="line"><span class="hljs-comment">  href: 'https://dogukansahin.net/a/b/c/d?value=1245&value2=abcd' }</span></span><br><span class="line"><span class="hljs-comment">  */</span></span><br><span class="line"><span class="hljs-string">``</span><span class="hljs-string">` </span></span><br><span class="line"><span class="hljs-string">* Bu objeyi atadığımız değişken üzerinden adresimiz hakkında istenilen özelliğe ulaşabiliriz.</span></span><br><span class="line"><span class="hljs-string">`</span><span class="hljs-string">``</span>Javascript</span><br><span class="line">  <span class="hljs-comment">// Host adı</span></span><br><span class="line">  <span class="hljs-keyword">const</span> hostName = adresBilgileri.host;</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(hostName);</span><br><span class="line">  <span class="hljs-comment">// Console: dogukansahin.net</span></span><br></pre></td></tr></tbody></table></figure><ul>
-<li>Eğer query bilgilerinin ayrı bir obje olarak tutulmasını istiyorsak parse() metoduna ikinci parametre olarak <strong>true</strong> değeri atanır.<pre><code class="Javascript"><span class="keyword">const</span> adresBilgileri = url.parse(adres,<span class="literal">true</span>);
-<span class="built_in">console</span>.log(adresBilgileri);
-<span class="comment">/* Console:</span>
-<span class="comment">    Url {</span>
-<span class="comment">protocol: 'https:',</span>
-<span class="comment">slashes: true,</span>
-<span class="comment">auth: null,</span>
-<span class="comment">host: 'dogukansahin.net',</span>
-<span class="comment">port: null,</span>
-<span class="comment">hostname: 'dogukansahin.net',</span>
-<span class="comment">hash: null,</span>
-<span class="comment">search: '?value=1245&value2=abcd',</span>
-<span class="comment">query: [Object: null prototype] { value: '1245', value2: 'abcd' },</span>
-<span class="comment">pathname: '/a/b/c/d',</span>
-<span class="comment">path: '/a/b/c/d?value=1245&value2=abcd',</span>
-<span class="comment">href: 'https://dogukansahin.net/a/b/c/d?value=1245&value2=abcd' }</span>
-<span class="comment">*/</span></code></pre>
-</li>
+<li>res/drawable/ : <strong>@drawable</strong></li>
+<li>res/menu/ :  <strong>@menu</strong></li>
+<li>res/values/arrays.xml : <strong>@array</strong></li>
+<li>res/values/dimens.xml : <strong>@dimen</strong></li>
+<li>res/values/strings.xml : <strong>@string</strong></li>
+<li>res/values/styles.xml : <strong>@style</strong></li>
+<li>res/values/colors.xml : <strong>@color</strong></li>
+<li>res/values/bools.xml : <strong>@bool</strong></li>
+<li>res/values/integers.xml : <strong>@integer</strong></li>
 </ul>
-</li>
+<p><strong>Örnek</strong>: res/values/strings.xml dosyasındaki <strong>buttonText</strong> adındaki string sabite ulaşalım.<br></p><figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">Button</span>></span> android:text=”@string/buttonText” … /></span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="Java-Siniflarinda-Kaynak-Kullanimi"><a href="#Java-Siniflarinda-Kaynak-Kullanimi" class="headerlink" title="Java Sınıflarında Kaynak Kullanımı"></a>Java Sınıflarında Kaynak Kullanımı</h3><p>Java sınıflarından kaynak dosyalarındaki sabitlere erişebilmek için <strong>this.getResources()</strong> nesnesi kullanılır. Bu nesne ile beraber döndürülecek verinin tipine bağlı olarak ilgili metodlar tetiklenir. <strong>getString(int id), getInt(int id), getDimension(int id)… gibi.</strong></p>
+<p>Aşağıda yine tanımlandığı dosya ya da klasörlere göre kaynak id önekleri listelenmiştir.</p>
+<ul>
+<li>res/drawable/ : <strong>R.drawable</strong></li>
+<li>res/menu/ :  <strong>R.menu</strong></li>
+<li>res/values/arrays.xml : <strong>R.array</strong></li>
+<li>res/values/dimens.xml : <strong>R.dimen</strong></li>
+<li>res/values/strings.xml : <strong>R.string, R.plurals</strong></li>
+<li>res/values/styles.xml : <strong>R.style</strong></li>
+<li>res/values/colors.xml : <strong>R.color</strong></li>
+<li>res/values/bools.xml : <strong>R.bool</strong></li>
+<li>res/values/integers.xml : <strong>R.integer</strong></li>
+<li>res/layout/ : <strong>R.layout</strong></li>
 </ul>
+<p><strong>Örnek</strong></p>
+<p></p><figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String buttonText = <span class="hljs-keyword">this</span>.getResources().getString(R.string.buttonText);</span><br></pre></td></tr></tbody></table></figure><p></p>
 </body></html>
     
     </div>
@@ -178,12 +183,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2020/03/04/NodeJS-File-System-Module/">NodeJS: File System Module</a>
+            <a href="/2020/03/09/Java-EE-Servlet-Kavrami/">Java EE: Servlet Kavramı</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2020/03/04/NodeJS-Events-Module/">NodeJS: Events Module</a>
+            <a href="/2020/02/29/Android-Programlama-Activity-ve-Layout/">Android Programlama: Activity Sınıfı</a>
             
         </span>
     </div>
@@ -205,8 +210,8 @@
     
 <script>
     var disqus_config = function () {
-        this.page.url = 'http://sahindogukan.github.io/2020/03/04/NodeJS-URL-Module/';
-        this.page.identifier = '2020/03/04/NodeJS-URL-Module/';
+        this.page.url = 'http://sahindogukan.github.io/2020/03/01/Android-Programlama-Resource-Kullanimi/';
+        this.page.identifier = '2020/03/01/Android-Programlama-Resource-Kullanimi/';
         
         this.language = 'en';
         

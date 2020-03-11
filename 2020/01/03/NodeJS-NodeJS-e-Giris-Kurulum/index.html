@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>NodeJS: Module Kavramı - Dogukan Sahin</title>
+<title>NodeJS - NodeJS&#39;e Giriş/Kurulum - Dogukan Sahin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,17 +16,26 @@
 
 
 
-    <meta name="description" content="NodeJS projelerinde kullandığımız modüller, bir veya daha fazla javascript dosyalarına yazdığımız karmaşık veya basit kod yapılarıdır. Modüller içerisinde tanımlı olan her değişken kendi kapsamı içeri">
+    <meta name="description" content="NodeJS nedir?NodeJS Javascript kodlarımızı sunucu tarafında çalıştırabildiğimiz işlem bazlı (event-based), ölçeklendirilebilir (non-blocking) bir açık kaynak kodlu uygulama geliştirme çatısıdır. Peki">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NodeJS: Module Kavramı">
-<meta property="og:url" content="http://sahindogukan.github.io/2020/03/04/NodeJS-Module-Kavrami/index.html">
+<meta property="og:title" content="NodeJS - NodeJS&#39;e Giriş&#x2F;Kurulum">
+<meta property="og:url" content="http://sahindogukan.github.io/2020/01/03/NodeJS-NodeJS-e-Giris-Kurulum/index.html">
 <meta property="og:site_name" content="Dogukan Sahin">
-<meta property="og:description" content="NodeJS projelerinde kullandığımız modüller, bir veya daha fazla javascript dosyalarına yazdığımız karmaşık veya basit kod yapılarıdır. Modüller içerisinde tanımlı olan her değişken kendi kapsamı içeri">
+<meta property="og:description" content="NodeJS nedir?NodeJS Javascript kodlarımızı sunucu tarafında çalıştırabildiğimiz işlem bazlı (event-based), ölçeklendirilebilir (non-blocking) bir açık kaynak kodlu uygulama geliştirme çatısıdır. Peki">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-03T23:37:25.000Z">
-<meta property="article:modified_time" content="2020-03-04T00:29:11.777Z">
+<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum1.png">
+<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum2.png">
+<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum3.png">
+<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum4.png">
+<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum5.png">
+<meta property="og:image" content="http://sahindogukan.github.io/images/kurulum6.png">
+<meta property="og:image" content="http://sahindogukan.github.io/images/node.png">
+<meta property="og:image" content="http://sahindogukan.github.io/images/node2.png">
+<meta property="article:published_time" content="2020-01-03T00:20:50.000Z">
+<meta property="article:modified_time" content="2020-03-11T22:32:26.761Z">
 <meta property="article:author" content="Dogukan Sahin">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://sahindogukan.github.io/images/kurulum1.png">
 
 
 
@@ -126,12 +135,12 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            NodeJS: Module Kavramı
+            NodeJS - NodeJS&#39;e Giriş/Kurulum
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-03-03T23:37:25.000Z" itemprop="datePublished">Mar 4 2020</time>
+            <time datetime="2020-01-03T00:20:50.000Z" itemprop="datePublished">Jan 3 2020</time>
         </span>
         
         <span class="column is-narrow article-category">
@@ -143,35 +152,20 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>NodeJS projelerinde kullandığımız modüller, bir veya daha fazla javascript dosyalarına yazdığımız karmaşık veya basit kod yapılarıdır. Modüller içerisinde tanımlı olan her değişken kendi kapsamı içerisinde değerlendirilir. Yani bir modül içerisinde yer alan tanımlı değişken genel kapsama dahil bir değişkeni etkilemez. Modül kavramı sayesinde yazılan bütün işlevler ilgili projeye dahil edilerek istenildiği kadar kullanılabilir.</p>
-<a id="more"></a>
+        <html><head></head><body><h3 id="NodeJS-nedir"><a href="#NodeJS-nedir" class="headerlink" title="NodeJS nedir?"></a>NodeJS nedir?</h3><p><strong>NodeJS</strong> Javascript kodlarımızı sunucu tarafında çalıştırabildiğimiz <strong>işlem bazlı</strong> (event-based), <strong>ölçeklendirilebilir</strong> (non-blocking) bir açık kaynak kodlu uygulama geliştirme çatısıdır. Peki nedir bu işlem bazlı veya ölçeklendirilebilirlik?<br>Örnek senaryo üzerinden anlatacak olursak; bir işlem yapmak için herhangi kurum/işletmeye gittiğimi düşünelim ve kuyrukta beklediğimizi varsayalım. <a id="more"></a> Kurum/işletme işlemleri yapmak için sizlere bir form veriyor ve önce bu formu doldurmanızı istiyor. Sırası gelen kişinin formu doldururken arkada bekleyen kişileri bekletmesi çok mantıklı değildir. İşlem bazlı çalışan sistemlerde her bir olay kendi işlevini görür ve diğer olayları ilgilendirmez. Bu durumda verdiğimiz örnekte sırası gelen her bir kişi formunu aldıktan sonra kuyruktan ayrılıp başka bir yerde doldurmaya başlarsa ve olay bu şekilde işlerse hiç kimse arkasındaki diğer kişileri bekletmiş olmayacak, formu dolduran kişi geri görevli kişiye formunu teslim ederek işlemini tamamlamış olacaktır. Diğer türlü yani <strong>Thread Based</strong> yapıda olmuş olsaydı sistem, kuyruktaki her bir kişi önündeki insanların sırasıyla formu doldurup teslim etmesini bekleyecekti ve sistemi blokladığı gibi arkasında bekleyen bir işi de bloklamış olacaktı. İşte <strong>ölçeklendirilebilir</strong> yani <strong>non-blocking</strong> dediğimiz kavram ise NodeJS’in event-based kavramı ile hareket ederek bloklama işlemlerini ortadan kaldırması olayıdır.</p>
+<h3 id="Kurulum-ve-Ilk-Komut"><a href="#Kurulum-ve-Ilk-Komut" class="headerlink" title="Kurulum ve İlk Komut"></a>Kurulum ve İlk Komut</h3><p>Aşağıdaki linkten ilgili işletim sistemi ve sistem gereksinimlerine özel indirme dosyasını indiriniz.<br><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a></p>
+<img src="/images/kurulum1.png"> 
+<img src="/images/kurulum2.png"> 
+<img src="/images/kurulum3.png"> 
+<img src="/images/kurulum4.png"> 
+<img src="/images/kurulum5.png"> 
+<img src="/images/kurulum6.png"> 
+<hr>
 
-<p>NodeJS yapılarında modüller 3 farklı alanda kategorilendirilebilir;</p>
-<ul>
-<li><p><strong>Core veya Node Modules</strong>: Herhangi bir indirme işlemi yapmadan, NodeJS kaynak dosyaları ile beraber gelen çekirdek yazılımlardır. Sadece projeye dahil edilerek kullanılır.</p>
-<ul>
-<li>File System Module</li>
-<li>Path Module</li>
-<li>OS Module</li>
-<li>Http Module</li>
-<li>Url Module</li>
-</ul>
-</li>
-<li><p><strong>Custom Modules</strong>: Javascript dosyalarına kendi yazdığımız modüllerdir.</p>
-</li>
-<li><p><strong>3rd Party Modules</strong>: Paket yöneticisi vasıtası indirip kullanabileceğimiz, dışarıdan başkaları tarafından oluşturulmuş modüllerdir.</p>
-<ul>
-<li>ExpressJs</li>
-<li>Mongoose</li>
-<li>Electron</li>
-</ul>
-</li>
-</ul>
-<h3 id="Custom-Yerel-Module-Olusturma-ve-Kullanimi"><a href="#Custom-Yerel-Module-Olusturma-ve-Kullanimi" class="headerlink" title="Custom (Yerel) Module Oluşturma ve Kullanımı"></a>Custom (Yerel) Module Oluşturma ve Kullanımı</h3><p>Modül tanımlama ve yazdığımız bu modülleri başka bir dosyada kullanmamız için <strong>module.export</strong> veya <strong>export</strong> anahtar kelimeleri kullanılır.<br>Şimdi <strong>firstModule.js</strong> adında bir .js dosyası oluşturalım ve ilk modülümüzü yazalım.<br>Oluşturduğumuz modülde ad,soyad ve yaş bilgilerini tutan değişkenler ve bu değerleri yazdıran <strong>“bilgiYazdir”</strong> adında fonksiyonumuz olsun.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports=</span><br><span class="line">    {</span><br><span class="line">        ad: <span class="hljs-string">"Doğukan"</span>,</span><br><span class="line">        soyad: <span class="hljs-string">"Şahin"</span>,</span><br><span class="line">        age: <span class="hljs-number">23</span>,</span><br><span class="line">        bilgiYazdir: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</span><br><span class="line">            <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.ad + <span class="hljs-string">" "</span> + <span class="hljs-keyword">this</span>.soyad + <span class="hljs-string">" "</span> + <span class="hljs-keyword">this</span>.age)</span><br><span class="line">        }</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure><br>Yazdığımız modülü <strong>module.export</strong> ile dışarıda kullanılabilir hale getirdik. Şimdi başka bir dosyamızda bu modülü dahil ederek nesnemize ulaşmaya çalışalım.<p></p>
-<ul>
-<li>Moduller <strong>“reguire(./)”</strong> anahtar kelimesi ile dahil edilir.</li>
-</ul>
-<p></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> myModule = <span class="hljs-built_in">require</span>(<span class="hljs-string">"./firstModule"</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(myModule.ad);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(myModule.soyad);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(myModule.age);</span><br><span class="line"></span><br><span class="line">myModule.bilgiYazdir();</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Console: </span></span><br><span class="line"><span class="hljs-comment">// Doğukan</span></span><br><span class="line"><span class="hljs-comment">// Şahin</span></span><br><span class="line"><span class="hljs-comment">// 23</span></span><br><span class="line"><span class="hljs-comment">// Doğukan Şahin 23</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><strong>Şimdi komut satırı aracılığı ile NodeJS’in kurulu olduğu dizine gidelim ve “node” komutu ile ilk programımızı çalıştıralım.</strong></p>
+<img width="450px" src="/images/node.png"> 
+<img width="450px" src="/images/node2.png">
+
 </body></html>
     
     </div>
@@ -180,12 +174,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2020/03/04/NodeJS-Events-Module/">NodeJS: Events Module</a>
+            <a href="/2020/01/04/NodeJS-Global-Nesneler/">NodeJS: Global Nesneler</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2020/03/04/NodeJS-Global-Nesneler/">NodeJS: Global Nesneler</a>
+            <a href="/2019/11/17/C-Stili-Dizilerden-std-array-e/">C Stili Dizilerden std::array&#39;e...</a>
             
         </span>
     </div>
@@ -207,8 +201,8 @@
     
 <script>
     var disqus_config = function () {
-        this.page.url = 'http://sahindogukan.github.io/2020/03/04/NodeJS-Module-Kavrami/';
-        this.page.identifier = '2020/03/04/NodeJS-Module-Kavrami/';
+        this.page.url = 'http://sahindogukan.github.io/2020/01/03/NodeJS-NodeJS-e-Giris-Kurulum/';
+        this.page.identifier = '2020/01/03/NodeJS-NodeJS-e-Giris-Kurulum/';
         
         this.language = 'en';
         
