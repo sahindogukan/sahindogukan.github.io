@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>Android Programlama: Event Kavramı - Dogukan Sahin</title>
+<title>NodeJS: File System Module - Dogukan Sahin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,15 +16,15 @@
 
 
 
-    <meta name="description" content="Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak ve">
+    <meta name="description" content="File System Module NodeJS uygulamalarımızda bizlere dosyadan veri okuma, yazma ve birçok dosya işlemlerini yapmamıza olanak sağlayan bir çekirdek modüldür.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Programlama: Event Kavramı">
-<meta property="og:url" content="http://sahindogukan.github.io/2020/02/10/Android-Programlama-Event-Kavrami/index.html">
+<meta property="og:title" content="NodeJS: File System Module">
+<meta property="og:url" content="http://sahindogukan.github.io/2020/02/16/NodeJS-File-System-Module/index.html">
 <meta property="og:site_name" content="Dogukan Sahin">
-<meta property="og:description" content="Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak ve">
+<meta property="og:description" content="File System Module NodeJS uygulamalarımızda bizlere dosyadan veri okuma, yazma ve birçok dosya işlemlerini yapmamıza olanak sağlayan bir çekirdek modüldür.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-02-09T23:43:50.000Z">
-<meta property="article:modified_time" content="2020-03-11T22:32:04.724Z">
+<meta property="article:published_time" content="2020-02-16T02:55:25.000Z">
+<meta property="article:modified_time" content="2020-03-11T22:43:31.961Z">
 <meta property="article:author" content="Dogukan Sahin">
 <meta name="twitter:card" content="summary">
 
@@ -123,31 +123,52 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            Android Programlama: Event Kavramı
+            NodeJS: File System Module
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-02-09T23:43:50.000Z" itemprop="datePublished">Feb 10 2020</time>
+            <time datetime="2020-02-16T02:55:25.000Z" itemprop="datePublished">Feb 16 2020</time>
         </span>
         
         <span class="column is-narrow article-category">
             <i class="far fa-folder"></i>
-            <a class="article-category-link" href="/categories/android/">android</a>
+            <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
         </span>
         
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak verilebilir. Bu tür olayların fırlatıldığı anda programlarımızda dinleyici nesneler yardımıyla yakalayarak isteklerimize uygun işlemleri gerçekleştirebiliriz.</p>
+        <html><head></head><body><p><strong>File System Module</strong> NodeJS uygulamalarımızda bizlere dosyadan veri okuma, yazma ve birçok dosya işlemlerini yapmamıza olanak sağlayan bir çekirdek modüldür. </p>
 <a id="more"></a>
-
-<p>Olayı daha iyi anlamak adına bir örnek yapalım. Bir adet <strong>Button</strong>  ve <strong>TextView</strong> bileşenimiz olsun ve butona tıkladığımız an <strong>onClick()</strong> metodunu tetikleyerek bir olay fırlatalım. Ardından listener ile fırlattığımız olayı yakalayarak TextView’ın içerisindeki değeri her butona tıklanıldığı an 1 arttıralım.<br>Gerekli arayüz seçimi ve XML stil tanımlamaları istenildiği gibi kurgulanabilir. Biz burada bir event üretip daha sonra onu yakalayarak gerekli işlemleri yapacağız.</p>
-<p></p><figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>{</span><br><span class="line">    <span class="hljs-keyword">private</span> Button btnArttir;</span><br><span class="line">    <span class="hljs-keyword">private</span> TextView sayi;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> sayac = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        btnArttir = findViewById(R.id.button);</span><br><span class="line">        sayi = findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        btnArttir.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {</span><br><span class="line">            <span class="hljs-meta">@Override</span></span><br><span class="line">            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View view)</span> </span>{</span><br><span class="line">                sayac++;</span><br><span class="line">                sayi.setText(<span class="hljs-string">"Tıklanma Sayısı: "</span> + sayac);</span><br><span class="line">            }</span><br><span class="line">        });</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
 <ul>
-<li>Fırlattığımız tıklanma olayını <strong>OnClickListener</strong> interface’inin <strong>onClick()</strong> metodunu override ederek yakalamış olduk.  </li>
+<li><p>Projemize modülümüzü <strong>fs</strong> anahtar kelimesi ile dahil edelim.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">"fs"</span>)</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+<li><p><strong>Dosya Okuma</strong>: </p>
+<p>fs.readFile(path, options callback);</p>
+<p></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fs.readFile(<span class="hljs-string">"text.txt"</span>, <span class="hljs-string">"utf-8"</span>, (error,data)=></span><br><span class="line">{</span><br><span class="line"><span class="hljs-keyword">if</span> (error) {</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(error)</span><br><span class="line">}<span class="hljs-keyword">else</span> {</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(data)</span><br><span class="line">}</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+<li><p><strong>Dosyaya Veri Yazma</strong>:</p>
+<p>fs.writeFile(file, data, options, callback)</p>
+<p></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fs.writeFile(<span class="hljs-string">"text.txt"</span>, <span class="hljs-string">"Doğukan ŞAHİN"</span>,<span class="hljs-string">"utf-8"</span>, (error,data)=></span><br><span class="line">{</span><br><span class="line"><span class="hljs-keyword">if</span> (error) {</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(error)</span><br><span class="line">}<span class="hljs-keyword">else</span> {</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Veri yazma işlemi tamamlandı!"</span>)</span><br><span class="line">}</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+<li><p><strong>Dosya Silme</strong></p>
+<p>fs.unlink(path, callback)<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fs.unlink(<span class="hljs-string">"text.txt"</span>, ()=>{</span><br><span class="line"> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Dosya basarıyla silindi!"</span>)</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+<li><p><strong>Dizindeki klasörleri listeleme</strong></p>
+<p>fs.readdir(path, callback);<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fs.readdir(<span class="hljs-string">"./"</span>, (error,data)=></span><br><span class="line">{</span><br><span class="line"><span class="hljs-keyword">if</span> (error) {</span><br><span class="line">  <span class="hljs-built_in">console</span>.log(error)</span><br><span class="line">}<span class="hljs-keyword">else</span> {</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(data)</span><br><span class="line">}</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+<li><p><strong>Yeni bir klasör oluşturma</strong></p>
+<p>fs.mkdir(path, mode, callback);</p>
+<p></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fs.mkdir(<span class="hljs-string">"yeniKlasor"</span>, ()=>{</span><br><span class="line"> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Klasor basarıyla olusturuldu!"</span>)</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
+<li><p><strong>Mevcut klasörü silme</strong></p>
+<p>fs.rmdir(path, callback);</p>
+<p></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> fs.rmdir(<span class="hljs-string">"yeniKlasor"</span>, ()=>{</span><br><span class="line"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Klasor basarıyla silindi!"</span>)</span><br><span class="line"> });</span><br></pre></td></tr></tbody></table></figure><p></p>
+</li>
 </ul>
+<p><strong>Daha fazlası için</strong>: <a href="https://nodejs.org/api/fs.html" target="_blank" rel="noopener">https://nodejs.org/api/fs.html</a></p>
 </body></html>
     
     </div>
@@ -156,12 +177,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2020/02/15/Android-Programlama-Layout-Siniflari/">Android Programlama: Layout Sınıfları</a>
+            <a href="/2020/02/17/NodeJS-HTTP-Module/">NodeJS: HTTP Module</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2020/02/05/React-Native-FlatList-Kullanimi/">React Native: FlatList Kullanımı</a>
+            <a href="/2020/02/15/React-Native-Axios-ile-Web-Servis-Cagrimi/">React-Native: Axios ile Web Servis Çağrımı</a>
             
         </span>
     </div>
@@ -183,8 +204,8 @@
     
 <script>
     var disqus_config = function () {
-        this.page.url = 'http://sahindogukan.github.io/2020/02/10/Android-Programlama-Event-Kavrami/';
-        this.page.identifier = '2020/02/10/Android-Programlama-Event-Kavrami/';
+        this.page.url = 'http://sahindogukan.github.io/2020/02/16/NodeJS-File-System-Module/';
+        this.page.identifier = '2020/02/16/NodeJS-File-System-Module/';
         
         this.language = 'en';
         

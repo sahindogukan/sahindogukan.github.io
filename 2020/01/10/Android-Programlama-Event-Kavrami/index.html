@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
-<title>Android Programlama: Resource Kullanımı - Dogukan Sahin</title>
+<title>Android Programlama: Event Kavramı - Dogukan Sahin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,15 +16,15 @@
 
 
 
-    <meta name="description" content="Uygulamalarımızı geliştirirken projemiz içerisinde res klasörü altında kaynak koddan bağımsız bazı veriler tutarız. Bu veriler bir arayüz dosyası olabileceği gibi; resim,video,metin diziler ya da bir">
+    <meta name="description" content="Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak ve">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Programlama: Resource Kullanımı">
-<meta property="og:url" content="http://sahindogukan.github.io/2020/03/01/Android-Programlama-Resource-Kullanimi/index.html">
+<meta property="og:title" content="Android Programlama: Event Kavramı">
+<meta property="og:url" content="http://sahindogukan.github.io/2020/01/10/Android-Programlama-Event-Kavrami/index.html">
 <meta property="og:site_name" content="Dogukan Sahin">
-<meta property="og:description" content="Uygulamalarımızı geliştirirken projemiz içerisinde res klasörü altında kaynak koddan bağımsız bazı veriler tutarız. Bu veriler bir arayüz dosyası olabileceği gibi; resim,video,metin diziler ya da bir">
+<meta property="og:description" content="Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak ve">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-02-29T22:30:45.000Z">
-<meta property="article:modified_time" content="2020-03-11T22:32:18.859Z">
+<meta property="article:published_time" content="2020-01-09T23:43:50.000Z">
+<meta property="article:modified_time" content="2020-03-11T22:43:12.376Z">
 <meta property="article:author" content="Dogukan Sahin">
 <meta name="twitter:card" content="summary">
 
@@ -123,12 +123,12 @@
     <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            Android Programlama: Resource Kullanımı
+            Android Programlama: Event Kavramı
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2020-02-29T22:30:45.000Z" itemprop="datePublished">Mar 1 2020</time>
+            <time datetime="2020-01-09T23:43:50.000Z" itemprop="datePublished">Jan 10 2020</time>
         </span>
         
         <span class="column is-narrow article-category">
@@ -140,38 +140,14 @@
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <html><head></head><body><p>Uygulamalarımızı geliştirirken projemiz içerisinde <strong>res</strong> klasörü altında kaynak koddan bağımsız bazı veriler tutarız. Bu veriler bir arayüz dosyası olabileceği gibi; resim,video,metin diziler ya da bir style dosyası da olabilir.</p>
+        <html><head></head><body><p>Event’lar uygulamalarda kullanıcıların arayüz bileşenleri ile oluşturduğu etkileşim sonucu oluşan olaylardır. Bir butona tıklama veya ekranın herhangi bir bileşenine dokunma event’lara örnek olarak verilebilir. Bu tür olayların fırlatıldığı anda programlarımızda dinleyici nesneler yardımıyla yakalayarak isteklerimize uygun işlemleri gerçekleştirebiliriz.</p>
 <a id="more"></a>
 
-<h2 id="Kaynaklara-Erisim"><a href="#Kaynaklara-Erisim" class="headerlink" title="Kaynaklara Erişim"></a>Kaynaklara Erişim</h2><h3 id="XML-Dosyalarinda-Kaynak-Kullanimi"><a href="#XML-Dosyalarinda-Kaynak-Kullanimi" class="headerlink" title="XML Dosyalarında Kaynak Kullanımı"></a>XML Dosyalarında Kaynak Kullanımı</h3><p>Aşağıda tanımlandığı dosya ya da klasörlere göre kaynak id önekleri listelenmiştir.</p>
+<p>Olayı daha iyi anlamak adına bir örnek yapalım. Bir adet <strong>Button</strong>  ve <strong>TextView</strong> bileşenimiz olsun ve butona tıkladığımız an <strong>onClick()</strong> metodunu tetikleyerek bir olay fırlatalım. Ardından listener ile fırlattığımız olayı yakalayarak TextView’ın içerisindeki değeri her butona tıklanıldığı an 1 arttıralım.<br>Gerekli arayüz seçimi ve XML stil tanımlamaları istenildiği gibi kurgulanabilir. Biz burada bir event üretip daha sonra onu yakalayarak gerekli işlemleri yapacağız.</p>
+<p></p><figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AppCompatActivity</span> </span>{</span><br><span class="line">    <span class="hljs-keyword">private</span> Button btnArttir;</span><br><span class="line">    <span class="hljs-keyword">private</span> TextView sayi;</span><br><span class="line">    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> sayac = <span class="hljs-number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="hljs-meta">@Override</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{</span><br><span class="line">        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        btnArttir = findViewById(R.id.button);</span><br><span class="line">        sayi = findViewById(R.id.textView);</span><br><span class="line"></span><br><span class="line">        btnArttir.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {</span><br><span class="line">            <span class="hljs-meta">@Override</span></span><br><span class="line">            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View view)</span> </span>{</span><br><span class="line">                sayac++;</span><br><span class="line">                sayi.setText(<span class="hljs-string">"Tıklanma Sayısı: "</span> + sayac);</span><br><span class="line">            }</span><br><span class="line">        });</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
 <ul>
-<li>res/drawable/ : <strong>@drawable</strong></li>
-<li>res/menu/ :  <strong>@menu</strong></li>
-<li>res/values/arrays.xml : <strong>@array</strong></li>
-<li>res/values/dimens.xml : <strong>@dimen</strong></li>
-<li>res/values/strings.xml : <strong>@string</strong></li>
-<li>res/values/styles.xml : <strong>@style</strong></li>
-<li>res/values/colors.xml : <strong>@color</strong></li>
-<li>res/values/bools.xml : <strong>@bool</strong></li>
-<li>res/values/integers.xml : <strong>@integer</strong></li>
+<li>Fırlattığımız tıklanma olayını <strong>OnClickListener</strong> interface’inin <strong>onClick()</strong> metodunu override ederek yakalamış olduk.  </li>
 </ul>
-<p><strong>Örnek</strong>: res/values/strings.xml dosyasındaki <strong>buttonText</strong> adındaki string sabite ulaşalım.<br></p><figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">Button</span>></span> android:text=”@string/buttonText” … /></span><br></pre></td></tr></tbody></table></figure><p></p>
-<h3 id="Java-Siniflarinda-Kaynak-Kullanimi"><a href="#Java-Siniflarinda-Kaynak-Kullanimi" class="headerlink" title="Java Sınıflarında Kaynak Kullanımı"></a>Java Sınıflarında Kaynak Kullanımı</h3><p>Java sınıflarından kaynak dosyalarındaki sabitlere erişebilmek için <strong>this.getResources()</strong> nesnesi kullanılır. Bu nesne ile beraber döndürülecek verinin tipine bağlı olarak ilgili metodlar tetiklenir. <strong>getString(int id), getInt(int id), getDimension(int id)… gibi.</strong></p>
-<p>Aşağıda yine tanımlandığı dosya ya da klasörlere göre kaynak id önekleri listelenmiştir.</p>
-<ul>
-<li>res/drawable/ : <strong>R.drawable</strong></li>
-<li>res/menu/ :  <strong>R.menu</strong></li>
-<li>res/values/arrays.xml : <strong>R.array</strong></li>
-<li>res/values/dimens.xml : <strong>R.dimen</strong></li>
-<li>res/values/strings.xml : <strong>R.string, R.plurals</strong></li>
-<li>res/values/styles.xml : <strong>R.style</strong></li>
-<li>res/values/colors.xml : <strong>R.color</strong></li>
-<li>res/values/bools.xml : <strong>R.bool</strong></li>
-<li>res/values/integers.xml : <strong>R.integer</strong></li>
-<li>res/layout/ : <strong>R.layout</strong></li>
-</ul>
-<p><strong>Örnek</strong></p>
-<p></p><figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String buttonText = <span class="hljs-keyword">this</span>.getResources().getString(R.string.buttonText);</span><br></pre></td></tr></tbody></table></figure><p></p>
 </body></html>
     
     </div>
@@ -180,12 +156,12 @@
     <div class="columns is-mobile is-multiline article-nav">
         <span class="column is-12-mobile is-half-desktop  article-nav-prev">
             
-            <a href="/2020/03/09/Java-EE-Servlet-Kavrami/">Java EE: Servlet Kavramı</a>
+            <a href="/2020/01/15/NodeJS-URL-Module/">NodeJS: URL Module</a>
             
         </span>
         <span class="column is-12-mobile is-half-desktop  article-nav-next">
             
-            <a href="/2020/02/29/Android-Programlama-Activity-ve-Layout/">Android Programlama: Activity Sınıfı</a>
+            <a href="/2020/01/07/NodeJS-Events-Module/">NodeJS: Events Module</a>
             
         </span>
     </div>
@@ -207,8 +183,8 @@
     
 <script>
     var disqus_config = function () {
-        this.page.url = 'http://sahindogukan.github.io/2020/03/01/Android-Programlama-Resource-Kullanimi/';
-        this.page.identifier = '2020/03/01/Android-Programlama-Resource-Kullanimi/';
+        this.page.url = 'http://sahindogukan.github.io/2020/01/10/Android-Programlama-Event-Kavrami/';
+        this.page.identifier = '2020/01/10/Android-Programlama-Event-Kavrami/';
         
         this.language = 'en';
         
