@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>Android Programlama: Layout Sınıfları - Dogukan Sahin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="Android uygulamalarında ekranlarda kullandığımız bileşenlerin yerleşim düzeni ve ekran tasarımları Layout sınıfları tarafından sağlanır. res klasoru altında tanımlanan layout dosyaları XML formatındad">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Programlama: Layout Sınıfları">
+<meta property="og:url" content="http://yoursite.com/2020/02/29/Android-Programlama-Layout-Siniflari/index.html">
+<meta property="og:site_name" content="Dogukan Sahin">
+<meta property="og:description" content="Android uygulamalarında ekranlarda kullandığımız bileşenlerin yerleşim düzeni ve ekran tasarımları Layout sınıfları tarafından sağlanır. res klasoru altında tanımlanan layout dosyaları XML formatındad">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/images/linear1.png">
+<meta property="og:image" content="http://yoursite.com/images/gravity_left.PNG">
+<meta property="og:image" content="http://yoursite.com/images/gravity_center.PNG">
+<meta property="og:image" content="http://yoursite.com/images/gravity_right.PNG">
+<meta property="og:image" content="http://yoursite.com/images/weight.png">
+<meta property="og:image" content="http://yoursite.com/images/absolute.PNG">
+<meta property="og:image" content="http://yoursite.com/images/relativelayout.png">
+<meta property="og:image" content="http://yoursite.com/images/framelayout.PNG">
+<meta property="og:image" content="http://yoursite.com/images/gridlayout.PNG">
+<meta property="og:image" content="http://yoursite.com/images/bias.PNG">
+<meta property="article:published_time" content="2020-02-28T21:53:06.000Z">
+<meta property="article:modified_time" content="2020-03-09T22:50:55.246Z">
+<meta property="article:author" content="Dogukan Sahin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/linear1.png">
+
+
+
+
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                Dogukan SAHIN
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/categories/javascript/">Javascript ES6-ES7</a>
+            
+            <a class="navbar-item "
+               href="/categories/nodejs/">NodeJS</a>
+            
+            <a class="navbar-item "
+               href="/categories/reactnative/">React Native</a>
+            
+            <a class="navbar-item "
+               href="/categories/javaee/">Java EE</a>
+            
+            <a class="navbar-item "
+               href="/categories/android/">Android</a>
+            
+            <a class="navbar-item "
+               href="/categories/oracle/">Oracle</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Android Programlama: Layout Sınıfları
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-02-28T21:53:06.000Z" itemprop="datePublished">Feb 29 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/android/">android</a>
+        </span>
+        
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>Android uygulamalarında ekranlarda kullandığımız bileşenlerin yerleşim düzeni ve ekran tasarımları <strong>Layout</strong> sınıfları tarafından sağlanır. <strong>res</strong> klasoru altında tanımlanan layout dosyaları <strong>XML</strong> formatındadır ve içerisinde Android bileşenlerine özel etiketler sayesinde farklı özellikler belirtilir. </p>
+<p>Bütün layout sınıfları kendisi de <strong>View</strong>‘dan türeyen <strong>View Group</strong> sınıfıdan türemiştir ve layoutlara <strong>yükseklik</strong> ve <strong>genişlik</strong> değerleri atamaları zorunludur.</p>
+<a id="more"></a>
+<p>Ölçü Birimleri ve Tanımlamaları:</p>
+<ul>
+<li><strong>px</strong>: Ekranın fiziksel piksel değeridir. Cihazlar arasında farklılık göstereceği için tavsiye edilmez.</li>
+<li><strong>dp</strong>: Cihaz ekranlarının fiziksel yoğunluğuna bağlı göreceli, soyut birimdir. Arayüz bileşenlerinin büyüklüklerini tanımlarken sıklıkla kullanılır.</li>
+<li><strong>sp</strong>: dp ile aynı şekilde fakat font boyutlarının tanımlanması için tercih edilir.</li>
+</ul>
+<p><strong>wrap_content</strong>: Kullanılan bileşenin içeriğine göre yüksekliğinin ve genişliğinin otomatik olarak düzenlenmesini sağlayan özellik.</p>
+<h1 id="Layout-Cesitleri"><a href="#Layout-Cesitleri" class="headerlink" title="Layout Çeşitleri"></a>Layout Çeşitleri</h1><h2 id="LinearLayout"><a href="#LinearLayout" class="headerlink" title="LinearLayout"></a>LinearLayout</h2><p>LinearLayout içinde bulunan bileşenlerin tek bir yönde diğer bir anlamda tek çizgide yerleştirip kullanmamızı sağlar. Bu hizalama <strong>horizontal</strong> (yatay) veya <strong>vertical</strong> (dikey) olabilir ve <strong>orientation</strong> özelliği sayesinde bunu belirtip kullanabiliriz.<br></p><figure class="highlight plain hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android:orientation="vertical"</span><br></pre></td></tr></tbody></table></figure><br>Default değeri <strong>horizontal</strong>‘dır.<p></p>
+<p>Bileşenlere dışarıdan boşluk değeri ataması</p>
+<ul>
+<li><strong>layout_marginLeft</strong>: Sol taraftan,</li>
+<li><strong>layout_marginRight</strong>: Sağ taraftan,</li>
+<li><strong>layout_marginTop</strong>: Yukarıdan,</li>
+<li><strong>layout_marginBottom</strong>: Aşağıdan<br>özellikleri ile tanımlanır.</li>
+</ul>
+<p>Bütün hepsinden eşit boşluk bırakılmak isteniyorsa <strong>layout_margin</strong> özelliği kullanılır.<br></p><figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">LinearLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">xmlns:app</span>=<span class="hljs-string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">xmlns:tools</span>=<span class="hljs-string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">"vertical"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">tools:context</span>=<span class="hljs-string">".MainActivity"</span>></span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">EditText</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/txtName"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_marginLeft</span>=<span class="hljs-string">"5dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_marginRight</span>=<span class="hljs-string">"5dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_marginTop</span>=<span class="hljs-string">"10dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"Adınız:"</span>/></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">EditText</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/txtSurname"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_marginLeft</span>=<span class="hljs-string">"5dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_marginRight</span>=<span class="hljs-string">"5dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_marginTop</span>=<span class="hljs-string">"10dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"Soyadınız:"</span>/></span></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">LinearLayout</span>></span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<img width="350" height="600" src="/images/linear1.png"> 
+
+<h3 id="Hizalama-Islemleri-Gravity"><a href="#Hizalama-Islemleri-Gravity" class="headerlink" title="Hizalama İşlemleri (Gravity)"></a>Hizalama İşlemleri (Gravity)</h3><p>Hizalama işlemleri bileşenlerin bulunduğu ata bileşene göre <strong>layout_gravity</strong> özelliği ile tanımlanır.<br><strong>(“left”, “right”, “center”,”top”, “bottom” “center_horizontal”, “center_vertical”)</strong><br>Bileşen içerisinde bir hizalanma işlemi yapmak için de sadece <strong>gravity</strong> kullanılmaktadır.</p>
+<p></p><figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_conten"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_gravity</span>=<span class="hljs-string">"left"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"Buton"</span></span></span><br><span class="line"><span class="hljs-tag">        /></span></span><br></pre></td></tr></tbody></table></figure><br><figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_conten"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_gravity</span>=<span class="hljs-string">"center"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"Buton"</span></span></span><br><span class="line"><span class="hljs-tag">        /></span></span><br></pre></td></tr></tbody></table></figure><br><figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_conten"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_gravity</span>=<span class="hljs-string">"right"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"Buton"</span></span></span><br><span class="line"><span class="hljs-tag">        /></span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<img width="250" height="100" src="/images/gravity_left.PNG"> 
+<img width="250" height="100" src="/images/gravity_center.PNG"> 
+<img width="250" height="100" src="/images/gravity_right.PNG"> 
+
+<h3 id="Weight-Kavrami"><a href="#Weight-Kavrami" class="headerlink" title="Weight Kavramı"></a>Weight Kavramı</h3><p>Uygulamalarımızdaki bileşenlerin float değerler atanarak bulunduğu taşıyıcıya göre yükseklik/genişlik tanımlamalarının yapılmasını sağlar.<br></p><figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:background</span>=<span class="hljs-string">"@color/colorYellow"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">"0.2"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"0.2"</span> /></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:background</span>=<span class="hljs-string">"@color/colorPrimary"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">"0.3"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"0.3"</span> /></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/textView"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:background</span>=<span class="hljs-string">"@color/colorOrange"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_weight</span>=<span class="hljs-string">"0.5"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"0.3"</span> /></span></span><br></pre></td></tr></tbody></table></figure><br><img width="350" height="600" src="/images/weight.png"><p></p>
+<h2 id="AbsoluteLayout"><a href="#AbsoluteLayout" class="headerlink" title="AbsoluteLayout"></a>AbsoluteLayout</h2><p>Ekranın koordinat sistemi olarak değerlendirilip buna göre içerisinde yer alan bileşenlerin konumlandırıldığı layout çeşitidir. Ekranın en üst sol köşesi <strong>(0,0)</strong> olarak belirlenmiştir.</p>
+<ul>
+<li>AbsoluteLayout <strong>“deprecated”</strong> olarak tanımlanır, yani ilerideki sürümlerde gerekli desteği alamayacağı ve kesileceği anlamına gelir. Koordinat düzeninin kapsamı cihazlarda farklılık göstereceği için kullanımı bu yüzden tavsiye edilmez. </li>
+</ul>
+<img width="1000" height="1000" src="/images/absolute.PNG">
+
+<h2 id="RelativeLayout"><a href="#RelativeLayout" class="headerlink" title="RelativeLayout"></a>RelativeLayout</h2><p>Uygulamadaki bileşenlerin diğer bileşenlere göre göreceli olarak yerleştime esasına göre uygulanır. Bir bileşenin konumu ve nerede olacağı diğer bileşenlere göre belirlenir. RelativeLayout aşağıdaki ön tanımlı özellikler ile tanımlanır.</p>
+<ul>
+<li><strong>layout_alignParentLeft=”true”</strong>: Ata bileşene göre sola,</li>
+<li><strong>layout_alignParentTop=”true”</strong>: Ata bileşene göre üste,</li>
+<li><strong>layout_alignParentRight=”true”</strong>: Ata bileşene göre sağa,</li>
+<li><strong>layout_alignParentBottom=”true”</strong>: Ata bileşene göre aşağıya,</li>
+<li><strong>layout_centerVertical=”true”</strong>: Dikey eksende ortalama,</li>
+<li><strong>layout_centerHorizontal=”true”</strong>: Yatay eksende ortalama,</li>
+<li><strong>layout_below=”bilesen_id”</strong>: id ile belirtilen bileşenin altına,</li>
+<li><strong>layout_toEndOf=”bilesen_id”</strong>: id ile belirtilen bileşenin yatayda sağına,</li>
+<li><strong>layout_above=”bilesen_id”</strong>: id ile belirtilen bileşenin üstüne,</li>
+<li><strong>layout_alignStart=”bilesen_id”</strong>: İlgiliid ile belirtilen bileşenin yatayda başlangıcına</li>
+</ul>
+<p>hizalama işlemleri yapılır.<br></p><figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta"><?xml version="1.0" encoding="utf-8"?></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">RelativeLayout</span> <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">xmlns:app</span>=<span class="hljs-string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">xmlns:tools</span>=<span class="hljs-string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">android:orientation</span>=<span class="hljs-string">"vertical"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">tools:context</span>=<span class="hljs-string">".MainActivity"</span>></span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"100dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"100dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_alignParentRight</span>=<span class="hljs-string">"true"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_alignParentTop</span>=<span class="hljs-string">"true"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"Top-Right"</span> /></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"100dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"100dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_alignParentLeft</span>=<span class="hljs-string">"true"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_alignParentTop</span>=<span class="hljs-string">"true"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"Top-Left"</span> /></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"90dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"60dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_centerVertical</span>=<span class="hljs-string">"true"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_centerHorizontal</span>=<span class="hljs-string">"true"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"Orta"</span> /></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"100dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"100dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_alignParentBottom</span>=<span class="hljs-string">"true"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_alignParentRight</span>=<span class="hljs-string">"true"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"Bottom-Left"</span> /></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"100dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"100dp"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_alignParentBottom</span>=<span class="hljs-string">"true"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_alignParentLeft</span>=<span class="hljs-string">"true"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"Bottom-Right"</span> /></span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">RelativeLayout</span>></span></span><br></pre></td></tr></tbody></table></figure><br><img width="350" height="600" src="/images/relativelayout.png"><p></p>
+<h2 id="FrameLayout"><a href="#FrameLayout" class="headerlink" title="FrameLayout"></a>FrameLayout</h2><p>Uygulamalarda genellikle tek bileşen barındırıldığı zaman kullanılan layout çeşididir. Eğer birden fazla bileşen tanımlanırsa bileşenler üst üste konumlandırılacaktır.</p>
+<img width="1000" height="1000" src="/images/framelayout.PNG">
+
+<h2 id="GridLayout"><a href="#GridLayout" class="headerlink" title="GridLayout"></a>GridLayout</h2><p>Ekranın satır ve sütunlara bölünerek bileşenlerin yerleştirildiği layout çeşididir.</p>
+<ul>
+<li><strong>android:rowCount</strong>: Satır sayısı</li>
+<li><strong>android:columnCount</strong>: Sütun sayısı</li>
+<li>Hizalandırma soldan sağa ve yukarıdan aşağı şekilde yapılır.</li>
+<li>Bileşenlerin kaplayacağı satır sayısı <strong>layout_rowSpan</strong>, sütun sayısı ise <strong>layout_columnSpan</strong> ile belirlenir.</li>
+</ul>
+<img width="1000" height="1000" src="/images/gridlayout.PNG">
+
+<h2 id="ConstraintLayout"><a href="#ConstraintLayout" class="headerlink" title="ConstraintLayout"></a>ConstraintLayout</h2><p>Layout çeşitleri arasında hem performansı hem de uyumluluk göze aldındığında tavsiye edilen ve en çok kullanılan layout çeşididir.</p>
+<ul>
+<li>Konumlandırmada kullanılan özellikler:<ul>
+<li>layout_constraintTop_toTopOf</li>
+<li>layout_constraintTop_toBottomOf</li>
+<li>layout_constraintBottom_toTopOf</li>
+<li>layout_constraintBottom_toBottomOf</li>
+<li>layout_constraintLeft_toTopOf</li>
+<li>layout_constraintLeft_toBottomOf</li>
+<li>layout_constraintLeft_toLeftOf</li>
+<li>layout_constraintLeft_toRightOf</li>
+<li>layout_constraintRight_toTopOf</li>
+<li>layout_constraintRight_toBottomOf</li>
+<li>layout_constraintRight_toLeftOf</li>
+<li>layout_constraintRight_toRightOf</li>
+<li>layout_constraintBaseline_toBaselineOf</li>
+</ul>
+</li>
+</ul>
+<p>Bileşenleri birbirlerine göre ya da ata bileşenlerine göre yerleştirmemizi sağlar. Örnek vermek gerekirse;<br>2 adet ButonA ve ButonB adında butonlarımız olsun.</p>
+<ul>
+<li>ButonB, ButonA’nın sağında kalsın istiyorsak; ButonB’nin <strong>constraintLeft</strong>‘inin <strong>toRightOf</strong>‘una ButonA tanımlanması gerekir.<br><figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta"><?xml version="1.0" encoding="utf-8"?></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">xmlns:app</span>=<span class="hljs-string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">xmlns:tools</span>=<span class="hljs-string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">  ></span></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/ButonA"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"ButonA"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">app:layout_constraintLeft_toLeftOf</span>=<span class="hljs-string">"parent"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">app:layout_constraintTop_toTopOf</span>=<span class="hljs-string">"parent"</span>/></span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/ButonB"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"ButonB"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">app:layout_constraintLeft_toRightOf</span>=<span class="hljs-string">"@+id/ButonA"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">app:layout_constraintTop_toTopOf</span>=<span class="hljs-string">"parent"</span>/></span></span><br><span class="line">    </span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span>></span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>ButonB, ButonA’nın altında kalmasını istiyorsak; ButonB’nin <strong>constraintTop</strong>‘ının <strong>toBottomOf</strong>‘una ButonA tanımlanması gerekir.<br><figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta"><?xml version="1.0" encoding="utf-8"?></span></span><br><span class="line"><span class="hljs-tag"><<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">xmlns:android</span>=<span class="hljs-string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">xmlns:app</span>=<span class="hljs-string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">xmlns:tools</span>=<span class="hljs-string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">    <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"match_parent"</span></span></span><br><span class="line"><span class="hljs-tag">  ></span></span><br><span class="line">    </span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/ButonA"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"ButonA"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">app:layout_constraintLeft_toLeftOf</span>=<span class="hljs-string">"parent"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">app:layout_constraintTop_toTopOf</span>=<span class="hljs-string">"parent"</span>/></span></span><br><span class="line"></span><br><span class="line">    <span class="hljs-tag"><<span class="hljs-name">Button</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:id</span>=<span class="hljs-string">"@+id/ButonB"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_width</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:layout_height</span>=<span class="hljs-string">"wrap_content"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">android:text</span>=<span class="hljs-string">"ButonB"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">app:layout_constraintLeft_toLeftOf</span>=<span class="hljs-string">"parent"</span></span></span><br><span class="line"><span class="hljs-tag">        <span class="hljs-attr">app:layout_constraintTop_toBottomOf</span>=<span class="hljs-string">"@+id/ButonA"</span></span></span><br><span class="line"><span class="hljs-tag">        /></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag"></<span class="hljs-name">androidx.constraintlayout.widget.ConstraintLayout</span>></span></span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<ul>
+<li>Bir bileşeni <strong>yatayda ortalamak</strong> için;<br><figure class="highlight xml hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app:layout_constraintLeft_toLeftOf="parent"</span><br><span class="line">app:layout_constraintRight_toRightOf="parent"</span><br></pre></td></tr></tbody></table></figure></li>
+<li>Bir bileşeni <strong>dikeyde ortalamak</strong> için;<pre><code class="XML">app:layout_constraintTop_toTopOf="parent"
+app:layout_constraintBottom_toBottomOf="parent"
+</code></pre>
+</li>
+</ul>
+<p>``` </p>
+<ul>
+<li><p>Bileşeni yatay ve dikeyde belli bir orana göre hizlandırmak istenildiği zaman <strong>bias</strong> özelliği kullanılır.<br><strong>0</strong>; yatayda en sol, dikeyde en üst<br><strong>1</strong>; yatayda sağ, dikeyde en alt değeri belirtir.</p>
+<p><strong>layout_constraintHorizontal_bias</strong> ile yatayda,<br><strong>layout_constraintVertical_bias</strong> ile de dikeyde bias değeri ataması yapılır.</p>
+<p>Örnek vermek gerekirse, bir bileşene;<br><strong>app:layout_constraintHorizontal_bias=”0.8”</strong><br><strong>app:layout_constraintVertical_bias=”0.3”</strong> atamaları yapıldığı zaman <strong>yatay hizada</strong> 0.8 oranında, <strong>dikey hizada</strong> ise 0.3 oranında hizalamış oluyoruz.</p>
+ <img width="350" height="600" src="/images/bias.PNG">
+
+</li>
+</ul>
+<p><strong><em>Kaynak</em></strong> : Dr. Abdullah Talha KABAKUŞ (<a href="http://akademik.duzce.edu.tr/talhakabakus" target="_blank" rel="noopener">http://akademik.duzce.edu.tr/talhakabakus</a>)</p>
+</body></html>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/02/29/Android-Programlama-Activity-ve-Layout/">Android Programlama: Activity Sınıfı</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/02/21/4-React-Navigation-Tab-Navigator/">React Native: React Navigation - Tab Navigator #4</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='true' async='async'></script>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2020/02/29/Android-Programlama-Layout-Siniflari/';
+        this.page.identifier = '2020/02/29/Android-Programlama-Layout-Siniflari/';
+        
+        this.language = 'en';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'true' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 Doğukan Sahin &nbsp;
+                Theme link: <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

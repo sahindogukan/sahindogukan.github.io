@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>#8 ES6 Static Metot ve Kalıtım (Subclass) Kavramları - Dogukan Sahin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="Bir önceki yazımızda ES6 ile beraber gelen Class kavramından bahsetmiş ve sınıflardan ürettiğimiz nesneler ile içerisine yazdığımız yardımcı metotlara ulaşabildiğimizi görmüştük. Bu yazımızda static m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="#8 ES6 Static Metot ve Kalıtım (Subclass) Kavramları">
+<meta property="og:url" content="http://yoursite.com/2020/02/02/8-ES6-Static-Metot-ve-Subclass-Kavramlari/index.html">
+<meta property="og:site_name" content="Dogukan Sahin">
+<meta property="og:description" content="Bir önceki yazımızda ES6 ile beraber gelen Class kavramından bahsetmiş ve sınıflardan ürettiğimiz nesneler ile içerisine yazdığımız yardımcı metotlara ulaşabildiğimizi görmüştük. Bu yazımızda static m">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-01T21:55:11.000Z">
+<meta property="article:modified_time" content="2020-02-03T15:19:03.638Z">
+<meta property="article:author" content="Dogukan Sahin">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                Dogukan SAHIN
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/categories/javascript/">Javascript ES6-ES7</a>
+            
+            <a class="navbar-item "
+               href="/categories/nodejs/">NodeJS</a>
+            
+            <a class="navbar-item "
+               href="/categories/reactnative/">React Native</a>
+            
+            <a class="navbar-item "
+               href="/categories/javaee/">Java EE</a>
+            
+            <a class="navbar-item "
+               href="/categories/android/">Android</a>
+            
+            <a class="navbar-item "
+               href="/categories/oracle/">Oracle</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            #8 ES6 Static Metot ve Kalıtım (Subclass) Kavramları
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-02-01T21:55:11.000Z" itemprop="datePublished">Feb 2 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/javascript/">javascript</a>
+        </span>
+        
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>Bir önceki yazımızda ES6 ile beraber gelen <a href="http://localhost:4000/2020/02/01/7-ES6-Class-Kavrami/" target="_blank" rel="noopener">Class</a> kavramından bahsetmiş ve sınıflardan ürettiğimiz nesneler ile içerisine yazdığımız yardımcı metotlara ulaşabildiğimizi görmüştük. Bu yazımızda static metotlara ve kalıtım kavramına değineceğiz. </p>
+<a id="more"></a>
+<h3 id="1-Static-Metodlar"><a href="#1-Static-Metodlar" class="headerlink" title="1) Static Metodlar"></a>1) Static Metodlar</h3><p>Static yardımcı metotlar; içerisindeki sınıf değişkenlerinden bağımsız, ilgili sınıftan bir nesne üretmeden, sınıf ismi ile ulaşabildiğimiz metotlardır. Static yardımcı metotlara ilgili sınıf parametrelerinden bağımsız parametreler gönderip istediğimiz sonucu geri döndürebiliriz.</p>
+<p>Metodlara sınıf üzerinden erişimi bir örnek üzerinden anlatalım:</p>
+<p>Oluşturduğumuz <b>PuanTablosu</b> isimli sınıf, içerisindeki <b>puanHesapla()</b> adlı yardımcı static metot ile gönderdiğimiz parametreler neticesinde ilgili takımın toplam puanınını göndersin. Gönderdiğimiz “G” (Galibiyet) parametresi +3, “B” (Beraberlik) parametresi ise toplam puana +1 eklesin. “M” (Mağlubiyet) ise puana hiç bir etki yapmasın.<br>Oluşturduğumuz her bir obje bir maç değerine karşılık gelmektedir.</p>
+<p></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PuanTablosu</span> </span>{</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(sonuc)</span><br><span class="line">    {</span><br><span class="line">        <span class="hljs-keyword">if</span> (sonuc === <span class="hljs-string">"G"</span>) {</span><br><span class="line">            <span class="hljs-keyword">this</span>.sonuc = <span class="hljs-string">"G"</span>;</span><br><span class="line">        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(sonuc === <span class="hljs-string">"B"</span>){</span><br><span class="line">            <span class="hljs-keyword">this</span>.sonuc = <span class="hljs-string">"B"</span>;</span><br><span class="line">        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(sonuc === <span class="hljs-string">"M"</span>){</span><br><span class="line">            <span class="hljs-keyword">this</span>.sonuc = <span class="hljs-string">"M"</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="hljs-keyword">static</span> puanHesapla(...mac)</span><br><span class="line">    {</span><br><span class="line">        <span class="hljs-keyword">let</span> puan = <span class="hljs-number">0</span>;</span><br><span class="line">        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i <span class="hljs-keyword">of</span> mac)</span><br><span class="line">        {</span><br><span class="line">            <span class="hljs-keyword">if</span>(i.sonuc === <span class="hljs-string">"G"</span>){</span><br><span class="line">                puan += <span class="hljs-number">3</span>;</span><br><span class="line">            }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (i.sonuc === <span class="hljs-string">"B"</span>) {</span><br><span class="line">                puan += <span class="hljs-number">1</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Toplam puan: "</span>+puan);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><b>Kullanım:</b></p>
+<p></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> mac1 = <span class="hljs-keyword">new</span> PuanTablosu(<span class="hljs-string">"G"</span>); <span class="hljs-comment">//+3</span></span><br><span class="line"><span class="hljs-keyword">const</span> mac2 = <span class="hljs-keyword">new</span> PuanTablosu(<span class="hljs-string">"M"</span>); <span class="hljs-comment">// 0</span></span><br><span class="line"><span class="hljs-keyword">const</span> mac3 = <span class="hljs-keyword">new</span> PuanTablosu(<span class="hljs-string">"B"</span>); <span class="hljs-comment">//+1</span></span><br><span class="line"><span class="hljs-keyword">const</span> mac4 = <span class="hljs-keyword">new</span> PuanTablosu(<span class="hljs-string">"B"</span>); <span class="hljs-comment">//+1</span></span><br><span class="line"><span class="hljs-keyword">const</span> mac5 = <span class="hljs-keyword">new</span> PuanTablosu(<span class="hljs-string">"G"</span>); <span class="hljs-comment">//+3</span></span><br><span class="line"><span class="hljs-comment">// Static yardımcı metodumuza class üzerinden erişim sağladık.</span></span><br><span class="line">PuanTablosu.puanHesapla(mac1,mac2,mac3,mac4,mac5);</span><br><span class="line"><span class="hljs-comment">//Console: Toplam puan: 8</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="1-ES6-ile-Kalitim"><a href="#1-ES6-ile-Kalitim" class="headerlink" title="1) ES6 ile Kalıtım"></a>1) ES6 ile Kalıtım</h3><p>Diğer programlama dillerinde olduğu gibi javascript tarafında da oluşturduğumuz sınıfların özelliklerini kalıtım yolu ile başka bir sınıfa aktarabiliyorduk. Fakat bu biraz aşina olduğumuz yapılardan biraz farklı oluyordu. İsterseniz ES6 standartları ile kalıtım örneğine geçmeden önce bir örnek ile daha önceden nasıl kalıtım alıyorduk inceleyelim.</p>
+<p>Akademisyen ve Personel adında iki adet sınıfımız olsun ve Akademisyen sınıfı Personel sınıfının özelliklerinden kalıtım yolu ile  yararlansın.</p>
+<p></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Personel</span>(<span class="hljs-params">ad,soyad</span>) </span>{</span><br><span class="line">    <span class="hljs-keyword">this</span>.ad = ad;</span><br><span class="line">    <span class="hljs-keyword">this</span>.soyad=soyad;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">Personel.prototype.bilgiYazdir = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</span><br><span class="line">    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Unvanı: "</span> + <span class="hljs-keyword">this</span>.unvan + <span class="hljs-string">" Adı: "</span> + <span class="hljs-keyword">this</span>.ad + <span class="hljs-string">" Soyadı: "</span> + <span class="hljs-keyword">this</span>.soyad)</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Akademisyen</span>(<span class="hljs-params">ad,soyad,unvan</span>) </span>{</span><br><span class="line">    <span class="hljs-comment">//call metodu ile Personel sınıfının constructoruna ulasıp, ilgili objemizi ve  özeliiklerimi gönderiyoruz.</span></span><br><span class="line">    Personel.call(<span class="hljs-keyword">this</span>,ad,soyad);</span><br><span class="line">    <span class="hljs-keyword">this</span>.unvan = unvan;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><br>Şimdi ise kalıtımı sağlayacak olan atamayı yapalım. Object.create() metoduna Akademisyen sınıfımızın prototype kısmını vererek bunu Akademisyen sınıfımızın prototype ına ekle veya at demiş oluyoruz. Yani Personel sınıfımızdaki bütün özellikler artık Akademisyen sınıfı tarafından da kullanılmış oluyor.<br><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Akademisyen.prototype = <span class="hljs-built_in">Object</span>.create(Personel.prototype);</span><br></pre></td></tr></tbody></table></figure><br><b>Kullanım:</b><p></p>
+<p></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">var</span> akademisyen = <span class="hljs-keyword">new</span> Akademisyen(<span class="hljs-string">"Kubra"</span>, <span class="hljs-string">"Şahin"</span>, <span class="hljs-string">"Doc.Dr"</span>);</span><br><span class="line">akademisyen.bilgiYazdir();</span><br><span class="line"><span class="hljs-comment">//Console: Unvanı: Doc.Dr Adı: Kubra Soyadı: Şahin</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+<h3 id="ES6-ile-kalitim-kavramini-inceleyelim"><a href="#ES6-ile-kalitim-kavramini-inceleyelim" class="headerlink" title="ES6 ile kalıtım kavramını inceleyelim;"></a>ES6 ile kalıtım kavramını inceleyelim;</h3><p>ES6 standartları ile sınıflar arası kalıtım <b>“extends”</b> anahtar kelimesi ile sağlanır.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">altS</span>ı<span class="hljs-title">n</span>ı<span class="hljs-title">f</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ustS</span>ı<span class="hljs-title">n</span>ı<span class="hljs-title">f</span></span>{</span><br><span class="line">    ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><br>Ust sınıfa erişim için ise <b>“super()”</b> metodundan yararlanılır.<br><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">altS</span>ı<span class="hljs-title">n</span>ı<span class="hljs-title">f</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ustS</span>ı<span class="hljs-title">n</span>ı<span class="hljs-title">f</span></span>{</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(param1,param2,param3){</span><br><span class="line">        <span class="hljs-keyword">super</span>(param1,param2);</span><br><span class="line">        ...</span><br><span class="line">    }</span><br><span class="line">        ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><p></p>
+<p><b>Şimdi aynı örneğimizi ES6 sonrası kalıtım kavramı ile yeniden yazalım</b></p>
+<p></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Personel</span> </span>{</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(ad, soyad, unvan) {</span><br><span class="line">        <span class="hljs-keyword">this</span>.ad = ad;</span><br><span class="line">        <span class="hljs-keyword">this</span>.soyad = soyad;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    bilgiYazdir() {</span><br><span class="line">        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Unvanı: "</span> + <span class="hljs-keyword">this</span>.unvan + <span class="hljs-string">" Adı: "</span> + <span class="hljs-keyword">this</span>.ad + <span class="hljs-string">" Soyadı: "</span> + <span class="hljs-keyword">this</span>.soyad)</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Akademisyen</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Personel</span></span>{</span><br><span class="line">    <span class="hljs-keyword">constructor</span>(ad,soyad,unvan){</span><br><span class="line">        <span class="hljs-keyword">super</span>(ad,soyad);</span><br><span class="line">        <span class="hljs-keyword">this</span>.unvan = unvan;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">var</span> akademisyen = <span class="hljs-keyword">new</span> Akademisyen(<span class="hljs-string">"Kubra"</span>, <span class="hljs-string">"Şahin"</span>, <span class="hljs-string">"Doc.Dr"</span>);</span><br><span class="line">akademisyen.bilgiYazdir();</span><br><span class="line"><span class="hljs-comment">//Console: Unvanı: Doc.Dr Adı: Kubra Soyadı: Şahin</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+</body></html>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/02/04/React-Native-Component-Mantigi/">React-Native: Component Mantığı</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/02/01/7-ES6-Class-Kavrami/">#7 ES6 Class Kavramı</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='true' async='async'></script>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2020/02/02/8-ES6-Static-Metot-ve-Subclass-Kavramlari/';
+        this.page.identifier = '2020/02/02/8-ES6-Static-Metot-ve-Subclass-Kavramlari/';
+        
+        this.language = 'en';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'true' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 Doğukan Sahin &nbsp;
+                Theme link: <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

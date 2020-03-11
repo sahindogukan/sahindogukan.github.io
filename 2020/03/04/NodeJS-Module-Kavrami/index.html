@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>NodeJS: Module Kavramı - Dogukan Sahin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="NodeJS projelerinde kullandığımız modüller, bir veya daha fazla javascript dosyalarına yazdığımız karmaşık veya basit kod yapılarıdır. Modüller içerisinde tanımlı olan her değişken kendi kapsamı içeri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJS: Module Kavramı">
+<meta property="og:url" content="http://yoursite.com/2020/03/04/NodeJS-Module-Kavrami/index.html">
+<meta property="og:site_name" content="Dogukan Sahin">
+<meta property="og:description" content="NodeJS projelerinde kullandığımız modüller, bir veya daha fazla javascript dosyalarına yazdığımız karmaşık veya basit kod yapılarıdır. Modüller içerisinde tanımlı olan her değişken kendi kapsamı içeri">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-03T23:37:25.000Z">
+<meta property="article:modified_time" content="2020-03-04T00:29:11.777Z">
+<meta property="article:author" content="Dogukan Sahin">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                Dogukan SAHIN
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/categories/javascript/">Javascript ES6-ES7</a>
+            
+            <a class="navbar-item "
+               href="/categories/nodejs/">NodeJS</a>
+            
+            <a class="navbar-item "
+               href="/categories/reactnative/">React Native</a>
+            
+            <a class="navbar-item "
+               href="/categories/javaee/">Java EE</a>
+            
+            <a class="navbar-item "
+               href="/categories/android/">Android</a>
+            
+            <a class="navbar-item "
+               href="/categories/oracle/">Oracle</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            NodeJS: Module Kavramı
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-03-03T23:37:25.000Z" itemprop="datePublished">Mar 4 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/nodejs/">nodejs</a>
+        </span>
+        
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p>NodeJS projelerinde kullandığımız modüller, bir veya daha fazla javascript dosyalarına yazdığımız karmaşık veya basit kod yapılarıdır. Modüller içerisinde tanımlı olan her değişken kendi kapsamı içerisinde değerlendirilir. Yani bir modül içerisinde yer alan tanımlı değişken genel kapsama dahil bir değişkeni etkilemez. Modül kavramı sayesinde yazılan bütün işlevler ilgili projeye dahil edilerek istenildiği kadar kullanılabilir.</p>
+<a id="more"></a>
+
+<p>NodeJS yapılarında modüller 3 farklı alanda kategorilendirilebilir;</p>
+<ul>
+<li><p><strong>Core veya Node Modules</strong>: Herhangi bir indirme işlemi yapmadan, NodeJS kaynak dosyaları ile beraber gelen çekirdek yazılımlardır. Sadece projeye dahil edilerek kullanılır.</p>
+<ul>
+<li>File System Module</li>
+<li>Path Module</li>
+<li>OS Module</li>
+<li>Http Module</li>
+<li>Url Module</li>
+</ul>
+</li>
+<li><p><strong>Custom Modules</strong>: Javascript dosyalarına kendi yazdığımız modüllerdir.</p>
+</li>
+<li><p><strong>3rd Party Modules</strong>: Paket yöneticisi vasıtası indirip kullanabileceğimiz, dışarıdan başkaları tarafından oluşturulmuş modüllerdir.</p>
+<ul>
+<li>ExpressJs</li>
+<li>Mongoose</li>
+<li>Electron</li>
+</ul>
+</li>
+</ul>
+<h3 id="Custom-Yerel-Module-Olusturma-ve-Kullanimi"><a href="#Custom-Yerel-Module-Olusturma-ve-Kullanimi" class="headerlink" title="Custom (Yerel) Module Oluşturma ve Kullanımı"></a>Custom (Yerel) Module Oluşturma ve Kullanımı</h3><p>Modül tanımlama ve yazdığımız bu modülleri başka bir dosyada kullanmamız için <strong>module.export</strong> veya <strong>export</strong> anahtar kelimeleri kullanılır.<br>Şimdi <strong>firstModule.js</strong> adında bir .js dosyası oluşturalım ve ilk modülümüzü yazalım.<br>Oluşturduğumuz modülde ad,soyad ve yaş bilgilerini tutan değişkenler ve bu değerleri yazdıran <strong>“bilgiYazdir”</strong> adında fonksiyonumuz olsun.<br></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">module</span>.exports=</span><br><span class="line">    {</span><br><span class="line">        ad: <span class="hljs-string">"Doğukan"</span>,</span><br><span class="line">        soyad: <span class="hljs-string">"Şahin"</span>,</span><br><span class="line">        age: <span class="hljs-number">23</span>,</span><br><span class="line">        bilgiYazdir: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{</span><br><span class="line">            <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>.ad + <span class="hljs-string">" "</span> + <span class="hljs-keyword">this</span>.soyad + <span class="hljs-string">" "</span> + <span class="hljs-keyword">this</span>.age)</span><br><span class="line">        }</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure><br>Yazdığımız modülü <strong>module.export</strong> ile dışarıda kullanılabilir hale getirdik. Şimdi başka bir dosyamızda bu modülü dahil ederek nesnemize ulaşmaya çalışalım.<p></p>
+<ul>
+<li>Moduller <strong>“reguire(./)”</strong> anahtar kelimesi ile dahil edilir.</li>
+</ul>
+<p></p><figure class="highlight javascript hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">const</span> myModule = <span class="hljs-built_in">require</span>(<span class="hljs-string">"./firstModule"</span>);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">console</span>.log(myModule.ad);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(myModule.soyad);</span><br><span class="line"><span class="hljs-built_in">console</span>.log(myModule.age);</span><br><span class="line"></span><br><span class="line">myModule.bilgiYazdir();</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">// Console: </span></span><br><span class="line"><span class="hljs-comment">// Doğukan</span></span><br><span class="line"><span class="hljs-comment">// Şahin</span></span><br><span class="line"><span class="hljs-comment">// 23</span></span><br><span class="line"><span class="hljs-comment">// Doğukan Şahin 23</span></span><br></pre></td></tr></tbody></table></figure><p></p>
+</body></html>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/03/04/NodeJS-Events-Module/">NodeJS: Events Module</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/03/04/NodeJS-Global-Nesneler/">NodeJS: Global Nesneler</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='true' async='async'></script>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2020/03/04/NodeJS-Module-Kavrami/';
+        this.page.identifier = '2020/03/04/NodeJS-Module-Kavrami/';
+        
+        this.language = 'en';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'true' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 Doğukan Sahin &nbsp;
+                Theme link: <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>

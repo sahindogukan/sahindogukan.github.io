@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+<title>Android Programlama: Activity Sınıfı - Dogukan Sahin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
+
+
+
+
+<meta name="description" content="">
+
+
+
+
+
+    <meta name="description" content="Activity sınıfından türettiğimiz her bir nesne, uygulamalarımızı geliştirirken tasarladığımız kullanıcı arayüzlerini yani sayfaları temsil etmektedir. Oluşturduğumuz her bir sayfanın kullanıcı ile ger">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Programlama: Activity Sınıfı">
+<meta property="og:url" content="http://yoursite.com/2020/02/29/Android-Programlama-Activity-ve-Layout/index.html">
+<meta property="og:site_name" content="Dogukan Sahin">
+<meta property="og:description" content="Activity sınıfından türettiğimiz her bir nesne, uygulamalarımızı geliştirirken tasarladığımız kullanıcı arayüzlerini yani sayfaları temsil etmektedir. Oluşturduğumuz her bir sayfanın kullanıcı ile ger">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/images/android1.PNG">
+<meta property="og:image" content="http://yoursite.com/images/android2.PNG">
+<meta property="article:published_time" content="2020-02-29T15:20:15.000Z">
+<meta property="article:modified_time" content="2020-03-09T22:51:07.423Z">
+<meta property="article:author" content="Dogukan Sahin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/android1.PNG">
+
+
+
+
+
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ovo|Source+Code+Pro">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/css/justifiedGallery.min.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script defer src="//use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+    
+<nav class="navbar is-transparent is-fixed-top navbar-main" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item navbar-logo" href="/">
+                Dogukan SAHIN
+            </a>
+            <div class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <div class="navbar-menu navbar-start">
+            
+            <a class="navbar-item "
+               href="/categories/javascript/">Javascript ES6-ES7</a>
+            
+            <a class="navbar-item "
+               href="/categories/nodejs/">NodeJS</a>
+            
+            <a class="navbar-item "
+               href="/categories/reactnative/">React Native</a>
+            
+            <a class="navbar-item "
+               href="/categories/javaee/">Java EE</a>
+            
+            <a class="navbar-item "
+               href="/categories/android/">Android</a>
+            
+            <a class="navbar-item "
+               href="/categories/oracle/">Oracle</a>
+            
+        </div>
+        
+        <div class="navbar-menu navbar-end">
+            
+            <a class="navbar-item search" title="Search" href="javascript:;">
+                <i class="fas fa-search"></i>
+            </a>
+            
+            
+            
+            <a class="navbar-item" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+               
+            
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+    <div class="container">
+    <article class="article content gallery" itemscope itemprop="blogPost">
+    <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
+        
+            Android Programlama: Activity Sınıfı
+        
+    </h1>
+    <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
+        <span class="column is-narrow">
+            <time datetime="2020-02-29T15:20:15.000Z" itemprop="datePublished">Feb 29 2020</time>
+        </span>
+        
+        <span class="column is-narrow article-category">
+            <i class="far fa-folder"></i>
+            <a class="article-category-link" href="/categories/android/">android</a>
+        </span>
+        
+        
+    </div>
+    <div class="article-entry is-size-6-mobile" itemprop="articleBody">
+    
+        <html><head></head><body><p><b>Activity</b> sınıfından türettiğimiz her bir nesne, uygulamalarımızı geliştirirken tasarladığımız kullanıcı arayüzlerini yani sayfaları temsil etmektedir. Oluşturduğumuz her bir sayfanın kullanıcı ile gerçekleştirdiği etkileşimler Activity sınıfı sayesinde gerçekleştirilir. Oluşturacağımız her bir activity bir arayüzünden sorumludur ve mutlaka <b>AndroidManifest.xml</b> dosyasında tanımlanması gerekmektedir. Tanımlanmadığı taktirde activity ile karşılaşılan ilk anda uygulamanın yürütümü sonlandırılır.</p>
+<a id="more"></a>
+<h3 id="Activity-Yasam-Dongusu"><a href="#Activity-Yasam-Dongusu" class="headerlink" title="Activity Yaşam Döngüsü"></a>Activity Yaşam Döngüsü</h3><ul>
+<li><b>onCreate()</b> Bir activity oluşturulup, çalışmaya başlamasının ardından tetiklenecek olan ilk metotdur. Eğer finish() metodu aracılığı ile veya başka bir nedenden dolayı silinmediği sürece yaşam döngüsü boyunca bir kere çalışır.</li>
+<li>Ardından sırasıyla <b>onStart()</b> ve <b>onResume()</b> metotları çalıştırılır. onStart(), onCreate()’den hemen sonra arayüz elemanları oluşturulduktan sonra çağırılır. onResume() ile de artık kullanıcı ile etkileşime geçilmiştir. Activity çalıştırılmadan önce çalışan son metotdur. Eğer uygulama içerisinde başka bir ekrana geçiş yapılıp o activity durdurulursa, geri dönüldüğünde activity onResume() ile tetiklenerek devam eder.</li>
+<li>Eğer activity kullanıcı tarafından arka plana atılırsa, sırasıyla <strong>onPause()</strong> ve <strong>onStop()</strong> metotları tetiklenir. Bu arada activity stack’de artık en önde değildir. Geri mevcut activity’e dönüldüğünde ise sırasıyla onStart() ve onResume() çalıştırılır.</li>
+<li>Activity kapatıldığı anda ise onPause() ve onStop() metotlarının ardından <strong>onDestroy()</strong> tetiklenerek activity yok edilir ve yaşam döngüsü biter.</li>
+</ul>
+<p>Activity yaşam döngüsünde tanımlanması zorunlu olan tek metod <strong>onCreate</strong> metodudur. Eğer bir activity stack’de arkaplana atılacaksa ve biz o an bulunan verilerin kaybolmasını istemiyorsak <strong>onSaveInstanceState(Bundle bundle)</strong> ve <strong>onRestoreInstanceState(Bundle bundle)</strong> metodlarını activity içerisinde tanımlamamız gerekir.<br><strong>onSaveInstanceState()</strong>: Activity arkapalana atıldığı zaman tetiklenen metoddur.<br><strong>onRestoreInstanceState()</strong>: Activity bazen farklı nedenlerden dolayı işletim sistemi tarafından sonlandırılabilir. Bu durumda activity tekrar odak haline geldiğinde onStart metodundan hemen sonra tetiklenen metoddur.</p>
+<p><strong>Örnek</strong>:</p>
+<p></p><figure class="highlight java hljs"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSaveInstanceState</span><span class="hljs-params">(Bundle kaydedilecekDeger)</span> </span>{</span><br><span class="line"><span class="hljs-keyword">super</span>.onSaveInstanceState(kaydedilecekDeger);</span><br><span class="line">kaydedilecekDeger.putInt(<span class="hljs-string">"Numara"</span>, Integer.parseInt(txtNumara.getText().toString()));</span><br><span class="line">}</span><br><span class="line"><span class="hljs-meta">@Override</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onRestoreInstanceState</span><span class="hljs-params">(Bundle kaydedilmisDeger)</span> </span>{</span><br><span class="line"><span class="hljs-keyword">super</span>.onRestoreInstanceState(kaydedilmisDeger);</span><br><span class="line"><span class="hljs-keyword">int</span> num = kaydedilmisDeger.getInt(<span class="hljs-string">"Numara"</span>);</span><br><span class="line">txtSayi.setText(Numara + <span class="hljs-string">""</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure><br><strong>Not</strong>: Bundle sınıfı nesneleri ile;<p></p>
+<ul>
+<li>putByte(String key, byte value) byte,</li>
+<li>putDouble(String key, double value) double,</li>
+<li>putString(String key, String value) String,</li>
+<li>putFloat(String key, float value) float,</li>
+<li>putLong(String key, long value) long tipinde veriler de saklayabiliriz.</li>
+</ul>
+<p>Aynı şekilde okumak için de;</p>
+<ul>
+<li>getByte(String key)</li>
+<li>getDouble(String key)</li>
+<li>getString(String key)</li>
+<li>getFloat(String key)</li>
+<li>getLong(String key)</li>
+</ul>
+<h3 id="Context-Sinifi"><a href="#Context-Sinifi" class="headerlink" title="Context Sınıfı"></a>Context Sınıfı</h3><p>Uygulamalardaki bileşenlerin oluşturulmasını, hem kendi aralarında hem de işletim sistemi ile bağlantı kurmasını sağlayan sınıftır. Dolayısıyla Activity’nin <strong>ata sınıfıdır</strong>.</p>
+<h3 id="R-Sinifi"><a href="#R-Sinifi" class="headerlink" title="R Sınıfı"></a>R Sınıfı</h3><p>Bazı zamanlar oluşturduğumuz sınıf içerisinde kaynak dosyalarından değer almak zorunda kalabiliyoruz. Örnek vermek gerekirse, <strong>res</strong> klasoru altında tanımladığımız bir renk kodu, uygulama adı, özel bir değişken örnek verilebilir. İşte bu değişkenlerin Java class’ları içerisinde kullanısını sağlayan <strong>R</strong> sınıfıdır. IDE tarafından otomatik olarak oluşturulur.</p>
+<h3 id="Arayuz-Gelistirme"><a href="#Arayuz-Gelistirme" class="headerlink" title="Arayüz Geliştirme"></a>Arayüz Geliştirme</h3><ul>
+<li><p>Kaynak Kod (XML) ile Arayüz Geliştirme</p>
+<img width="600" height="600" src="/images/android1.PNG"> 
+</li>
+<li><p>Design Penceresi ile Arayüz Geliştirme</p>
+<img width="600" height="600" src="/images/android2.PNG">   
+
+</li>
+</ul>
+<p><strong><em>Kaynak</em></strong> : Dr. Abdullah Talha KABAKUŞ (<a href="http://akademik.duzce.edu.tr/talhakabakus" target="_blank" rel="noopener">http://akademik.duzce.edu.tr/talhakabakus</a>)</p>
+</body></html>
+    
+    </div>
+    
+    
+    <div class="columns is-mobile is-multiline article-nav">
+        <span class="column is-12-mobile is-half-desktop  article-nav-prev">
+            
+            <a href="/2020/03/03/NodeJS-NodeJS-e-Giris-Kurulum/">NodeJS - NodeJS&#39;e Giriş/Kurulum</a>
+            
+        </span>
+        <span class="column is-12-mobile is-half-desktop  article-nav-next">
+            
+            <a href="/2020/02/29/Android-Programlama-Layout-Siniflari/">Android Programlama: Layout Sınıfları</a>
+            
+        </span>
+    </div>
+    
+</article>
+
+
+<div class="sharebox">
+    
+<div class="sharethis-inline-share-buttons"></div>
+<script type='text/javascript' src='true' async='async'></script>
+
+</div>
+
+
+
+<div class="comments">
+    <h3 class="title is-4">Comments</h3>
+    
+<script>
+    var disqus_config = function () {
+        this.page.url = 'http://yoursite.com/2020/02/29/Android-Programlama-Activity-ve-Layout/';
+        this.page.identifier = '2020/02/29/Android-Programlama-Activity-ve-Layout/';
+        
+        this.language = 'en';
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'true' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+<div id="disqus_thread">
+    
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+</div>
+</div>
+
+    </div>
+</section>
+    <footer class="footer">
+    <div class="container">
+        <div class="columns content">
+            <div class="column is-narrow has-text-centered">
+                &copy; 2020 Doğukan Sahin &nbsp;
+                Theme link: <a
+                        href="http://github.com/ppoffice/hexo-theme-minos">Minos</a>
+            </div>
+            <div class="column is-hidden-mobile"></div>
+
+            
+            <div class="column is-narrow">
+                <div class="columns is-mobile is-multiline is-centered">
+                
+                    
+                <a class="column is-narrow has-text-black" title="GitHub" href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">
+                    
+                    GitHub
+                    
+                </a>
+                
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+
+<!-- test if the browser is outdated -->
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/" target="_blank" rel="noopener">Update my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // plugin function, place inside DOM ready function
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        })
+    });
+</script>
+
+<script>
+    window.FontAwesomeConfig = {
+        searchPseudoElements: true
+    }
+    moment.locale("en-AU");
+</script>
+
+
+    
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script>
+    MathJax.Hub.Config({
+        "HTML-CSS": {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+</script>
+
+    
+    
+    
+    
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightgallery/1.6.8/js/lightgallery-all.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/justifiedGallery/3.6.5/js/jquery.justifiedGallery.min.js"></script>
+<script>
+    (function ($) {
+        $(document).ready(function () {
+            if (typeof($.fn.lightGallery) === 'function') {
+                $('.article.gallery').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof($.fn.justifiedGallery) === 'function') {
+                $('.justified-gallery').justifiedGallery();
+            }
+        });
+    })(jQuery);
+</script>
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <style>
+        .hljs {
+            position: relative;
+        }
+
+        .hljs .clipboard-btn {
+            float: right;
+            color: #9a9a9a;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hljs .clipboard-btn:hover {
+          color: #8a8a8a;
+        }
+
+        .hljs > .clipboard-btn {
+            display: none;
+            position: absolute;
+            right: 4px;
+            top: 4px;
+        }
+
+        .hljs:hover > .clipboard-btn {
+            display: inline;
+        }
+
+        .hljs > figcaption > .clipboard-btn {
+            margin-right: 4px;
+        }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $('figure.hljs').each(function(i, figure) {
+          var codeId = 'code-' + i;
+          var code = figure.querySelector('.code');
+          var copyButton = $('<button>Copy <i class="far fa-clipboard"></i></button>');
+          code.id = codeId;
+          copyButton.addClass('clipboard-btn');
+          copyButton.attr('data-clipboard-target-id', codeId);
+
+          var figcaption = figure.querySelector('figcaption');
+
+          if (figcaption) {
+            figcaption.append(copyButton[0]);
+          } else {
+            figure.prepend(copyButton[0]);
+          }
+        })
+
+        var clipboard = new ClipboardJS('.clipboard-btn', {
+          target: function(trigger) {
+            return document.getElementById(trigger.getAttribute('data-clipboard-target-id'));
+          }
+        });
+        clipboard.on('success', function(e) {
+          e.clearSelection();
+        })
+      })
+    </script>
+
+    
+    
+
+    
+
+
+
+<script src="/js/script.js"></script>
+
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-mask"></div>
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+    
+</body>
+</html>
